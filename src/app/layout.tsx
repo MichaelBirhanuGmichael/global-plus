@@ -1,0 +1,11 @@
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Global Plus Business Group | Ethiopia to the World",
+  description: "A diversified Ethiopian business group spanning export, manufacturing, construction, minerals and international trade.",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en"><body>{children}</body></html>;
+}
