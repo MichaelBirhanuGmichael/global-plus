@@ -3,6 +3,9 @@ import "./globals.css";
 import "./logo-overrides.css";
 import "./experience.css";
 import "./ecosystem.css";
+import "./coffee-journey.css";
+import "./division-slideshow.css";
+import "./location.css";
 
 export const metadata: Metadata = {
   title: "Global Plus Business Group | Ethiopia to the World",
