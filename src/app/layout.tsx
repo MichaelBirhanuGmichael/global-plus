@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./logo-overrides.css";
+import "./experience.css";
+import "./ecosystem.css";
 
 export const metadata: Metadata = {
   title: "Global Plus Business Group | Ethiopia to the World",
