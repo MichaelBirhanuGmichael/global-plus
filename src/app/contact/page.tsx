@@ -1,7 +1,42 @@
-import type {Metadata} from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import {Suspense} from "react";
+import { Suspense } from "react";
 import ContactForm from "@/components/contact-form";
-export const metadata:Metadata={title:"Contact | Global Plus Business Group",description:"Contact Global Plus Business Group in Addis Ababa by phone, WhatsApp, Telegram or email."};
-export default function ContactPage(){return <main className="contactPage"><header className="contactNav"><Link href="/"><Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={210} height={140}/></Link><nav><Link href="/#businesses">Our businesses</Link><Link href="/">Back to group</Link></nav></header><section className="contactHero"><p>Begin a partnership</p><h1>Let&apos;s build the next<br/><em>opportunity together.</em></h1><span>Choose the channel that works for you or prepare a detailed business inquiry below.</span></section><section className="contactChannels"><a href="tel:+251976390000"><b>Call / WhatsApp</b><strong>0976 390 000</strong><span>Call now ↗</span></a><a href="https://wa.me/251976390000" target="_blank" rel="noreferrer"><b>WhatsApp</b><strong>Message our team</strong><span>Open WhatsApp ↗</span></a><a href="https://t.me/+251911278192" target="_blank" rel="noreferrer"><b>Telegram / Call</b><strong>0911 278 192</strong><span>Open Telegram ↗</span></a><a href="tel:+251116662914"><b>Office telephone</b><strong>+251 11 666 2914</strong><span>Call office ↗</span></a><a href="mailto:Info.globalplus1214@gmail.com"><b>Email</b><strong>Info.globalplus1214@gmail.com</strong><span>Write an email ↗</span></a></section><section className="contactBody"><div><p className="contactLabel">Business inquiry</p><h2>Tell us what<br/>you want to <em>build.</em></h2><p>Share the essential details and we will prepare an email addressed to the Global Plus team.</p><address><b>Head office</b><br/>XQVP+W8W, Bole Medanalem area<br/>Opposite to Golden Tulip Hotel<br/>Woreda 3, Addis Ababa</address></div><Suspense fallback={<p>Loading inquiry form…</p>}><ContactForm/></Suspense></section><footer className="contactFooter"><Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={170} height={115}/><p>Direct conversations.<br/>Stronger partnerships.</p><Link href="/">Back to homepage ↑</Link></footer></main>}
+import SiteFooter from "@/components/site-footer";
+
+export const metadata: Metadata = {
+  title: "Contact | Global Plus Business Group",
+  description: "Contact Global Plus Business Group in Addis Ababa by phone, WhatsApp, Telegram or email.",
+};
+
+export default function ContactPage() {
+  return (
+    <main className="contactPage">
+      <header className="contactNav">
+        <Link href="/" aria-label="Global Plus home">
+          <Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={210} height={140} />
+        </Link>
+        <nav>
+          <Link href="/#businesses">Businesses</Link>
+          <Link href="/">Group home</Link>
+        </nav>
+      </header>
+
+      <section className="contactBody" id="inquiry">
+        <div className="contactIntro">
+          <p className="contactEyebrow">Begin a partnership</p>
+          <h1>
+            Let&apos;s build the next <em>opportunity together.</em>
+          </h1>
+          <p>Share the product, project, volume, destination or partnership detail and we will follow up.</p>
+        </div>
+        <Suspense fallback={<p className="contactFormFallback">Loading inquiry form…</p>}>
+          <ContactForm />
+        </Suspense>
+      </section>
+
+      <SiteFooter />
+    </main>
+  );
+}
