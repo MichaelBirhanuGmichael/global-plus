@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import SiteFooter from "@/components/site-footer";
 
 export const metadata: Metadata = {
   title: "Manufacturing & Industrial | Global Plus Business Group",
@@ -29,21 +30,38 @@ export default function ManufacturingPage() {
       <a className="mfgScroll" href="#capabilities">Explore capabilities <span>↓</span></a>
     </section>
 
-    <section className="mfgStatement"><p className="mfgEyebrow">Productive capacity</p><div><h2>Turning resources into<br/><em>essential products.</em></h2><p>Global Plus is developing a connected manufacturing platform that combines material knowledge, production discipline and market access—creating dependable products for homes, businesses and infrastructure.</p></div></section>
+    <section className="mfgCapabilities" id="capabilities"><div className="mfgCapabilitiesHead"><p className="mfgEyebrow">Core capabilities</p><h2>A diversified<br/><em>industrial portfolio.</em></h2></div><div className="mfgCapabilityGrid">{capabilities.map(([number,title,text])=><article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p><a href="#mfg-contact">Discuss capability ↗</a></article>)}</div></section>
 
     <section className="mfgFeature">
       <div className="mfgFeatureCopy"><p className="mfgEyebrow">Industrial platform</p><h2>Strength across<br/>the value chain.</h2><p>From raw-material sourcing and fabrication to quality assurance and distribution, every stage is designed to work as one system. Shared expertise across the group creates stronger procurement, faster execution and scalable routes to market.</p><ol>{operatingModel.map((step,index)=><li key={step}><b>{String(index+1).padStart(2,"0")}</b><span>{step}</span></li>)}</ol></div>
       <div className="mfgFeatureMedia"><Image src="/ethiopia-manufacturing-hawassa.jpg" alt="Ethiopian technicians working at an industrial production facility" fill sizes="55vw"/><span>People · Process · Production</span></div>
     </section>
 
-    <section className="mfgCapabilities" id="capabilities"><div className="mfgCapabilitiesHead"><p className="mfgEyebrow">Core capabilities</p><h2>A diversified<br/><em>industrial portfolio.</em></h2></div><div className="mfgCapabilityGrid">{capabilities.map(([number,title,text])=><article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p><a href="#mfg-contact">Discuss capability ↗</a></article>)}</div></section>
+    <section className="mfgStatement"><p className="mfgEyebrow">Productive capacity</p><div><h2>Turning resources into<br/><em>essential products.</em></h2><p>Global Plus is developing a connected manufacturing platform that combines material knowledge, production discipline and market access—creating dependable products for homes, businesses and infrastructure.</p></div></section>
 
     <section className="mfgPeople"><div className="mfgPeopleImage"><Image src="/ethiopia-manufacturing-workers.jpg" alt="Ethiopian manufacturing professionals on a production floor" fill sizes="50vw"/></div><div className="mfgPeopleCopy"><p className="mfgEyebrow">Made through expertise</p><h2>People power<br/><em>production.</em></h2><p>Modern equipment matters, but capable teams create consistent results. Our industrial direction prioritizes technical skills, safe operations, repeatable quality and continuous improvement.</p><div><span>Workforce development</span><span>Quality control</span><span>Operational safety</span><span>Process improvement</span></div></div></section>
 
-    <section className="mfgBand"><p>Materials</p><span>→</span><p>Manufacturing</p><span>→</span><p>Quality</p><span>→</span><p>Market</p></section>
+    <section className="mfgBand" aria-label="Manufacturing value pathway">
+      <div className="mfgBandInner">
+        {[
+          ["01", "Materials"],
+          ["02", "Manufacturing"],
+          ["03", "Quality"],
+          ["04", "Market"],
+        ].map(([num, label], index, list) => (
+          <div className="mfgBandStepWrap" key={label}>
+            <article className="mfgBandStep" style={{ ["--i" as string]: index }}>
+              <b>{num}</b>
+              <p>{label}</p>
+            </article>
+            {index < list.length - 1 ? <span className="mfgBandArrow" aria-hidden="true"><i/></span> : null}
+          </div>
+        ))}
+      </div>
+    </section>
 
     <section className="mfgContact" id="mfg-contact"><p className="mfgEyebrow">Build industrial opportunity</p><h2>Make more possible.<br/><em>Build with Global Plus.</em></h2><p>Talk to our team about manufacturing partnerships, supply requirements and future industrial projects.</p><Link href="/contact?division=Manufacturing%20%26%20Industrial">Start a conversation <span>↗</span></Link></section>
 
-    <footer className="mfgFooter"><Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={180} height={120}/><p>Manufacturing & Industrial<br/>Capability built for growth.</p><Link href="/">Back to group <span>↑</span></Link><small>© 2026 Global Plus Business Group</small></footer>
+    <SiteFooter />
   </main>;
 }

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import SiteFooter from "@/components/site-footer";
 
 const divisions = [
   { n: "01", title: "Manufacturing & Industrial", text: "Metal works, electrical manufacturing, cement, concrete and construction materials.", tone: "blue", href: "/businesses/manufacturing", images: [
@@ -26,9 +27,9 @@ const divisions = [
     { src: "/ethiopia-coffee-daye-bensa.png", alt: "Ethiopian coffee team washing and sorting beans at Daye Bensa" },
   ] },
   { n: "05", title: "Minerals & Resources", text: "Precious and semi-precious minerals, metallic and industrial minerals, certification, responsible sourcing and export logistics.", tone: "mineral", href: "/businesses/minerals", images: [
-    { src: "/global-plus-copper-bearing-mineral.png", alt: "Green mineral material at a Global Plus project site" },
-    { src: "/ethiopia-opal-mining.jpg", alt: "Mineral extraction activity at an Ethiopian opal mining area" },
-    { src: "/ethiopia-open-pit-mining.jpg", alt: "Large-scale mineral extraction at an Ethiopian open-pit mine" },
+    { src: "/minerals-hero.webp", alt: "Premium copper and malachite mineral specimen" },
+    { src: "/minerals-highland.webp", alt: "Ethiopian highland mineral-bearing rocky terrain" },
+    { src: "/minerals-open-pit.webp", alt: "Large-scale open-pit mineral mine in Ethiopia" },
   ] },
 ];
 
@@ -47,75 +48,18 @@ const ecosystem = [
   { key: "C", title: "Construction", text: "Infrastructure that advances communities" },
 ];
 
-const contactChannels = [
-  {
-    id: "whatsapp",
-    label: "WhatsApp",
-    href: "https://wa.me/251976390000",
-    external: true,
-    title: "Message us on WhatsApp · 0976 390 000",
-  },
-  {
-    id: "telegram",
-    label: "Telegram",
-    href: "https://t.me/+251911278192",
-    external: true,
-    title: "Reach us on Telegram · 0911 278 192",
-  },
-  {
-    id: "phone",
-    label: "Call",
-    href: "tel:+251116662914",
-    external: false,
-    title: "Call head office · +251 11 666 2914",
-  },
-  {
-    id: "email",
-    label: "Email",
-    href: "mailto:Info.globalplus1214@gmail.com",
-    external: false,
-    title: "Email · Info.globalplus1214@gmail.com",
-  },
-];
-
-function ContactIcon({ id }: { id: string }) {
-  if (id === "whatsapp") {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 2.1A9.9 9.9 0 0 0 3.4 16.7L2 22l5.5-1.4A9.9 9.9 0 1 0 12 2.1Zm0 18.1a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3.2.8.9-3.1-.2-.3a8.2 8.2 0 1 1 7 3.8Zm4.5-6.1c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.2-.5.1a6.7 6.7 0 0 1-2-1.2 7.4 7.4 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1 0-.3-.1-.4s-.5-1.2-.7-1.6-.4-.4-.5-.4h-.4c-.1 0-.4.1-.6.3a2 2 0 0 0-.6 1.5 3.5 3.5 0 0 0 .7 1.9 8 8 0 0 0 3.1 2.9 10.5 10.5 0 0 0 1.9.7 2.4 2.4 0 0 0 1.7-.6 2.8 2.8 0 0 0 .6-1.3c.1-.2 0-.3-.1-.4Z"/>
-      </svg>
-    );
-  }
-  if (id === "telegram") {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M21.8 4.3 18.9 19c-.2.9-.8 1.1-1.6.7l-4.4-3.3-2.1 2.1c-.2.2-.4.4-.9.4l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2l-10.6 6.7-4.6-1.4c-1-.3-1-.9.2-1.4L20.4 3c.8-.3 1.5.2 1.4 1.3Z"/>
-      </svg>
-    );
-  }
-  if (id === "phone") {
-    return (
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M6.6 3.2h2.4c.5 0 .9.3 1 .8l.7 3a1 1 0 0 1-.3 1l-1.5 1.5a12.1 12.1 0 0 0 5.3 5.3l1.5-1.5a1 1 0 0 1 1-.3l3 .7c.5.1.8.5.8 1v2.4c0 .6-.4 1-1 1A15.4 15.4 0 0 1 5.6 4.2c0-.6.4-1 1-1Z"/>
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5v-11Zm2.2.4 5.3 3.7a1 1 0 0 0 1.1 0l5.3-3.7H6.2Zm11.6 1.8-4.8 3.3a2.7 2.7 0 0 1-3 0L5.2 8.7V17c0 .3.2.5.5.5h12.6c.3 0 .5-.2.5-.5V8.7Z"/>
-    </svg>
-  );
-}
-
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [bizOpen, setBizOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [divisionFrame, setDivisionFrame] = useState(0);
   const [divisionSlidesPaused, setDivisionSlidesPaused] = useState(false);
   const [activeDivision, setActiveDivision] = useState(0);
   const divisionTouchStart = useRef<number | null>(null);
+  const bizMenuRef = useRef<HTMLDivElement>(null);
 
   const moveDivision = (direction: number) => setActiveDivision((current) => (current + direction + divisions.length) % divisions.length);
+  const closeMenus = () => { setMenuOpen(false); setBizOpen(false); };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -123,6 +67,24 @@ export default function Home() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!bizOpen) return;
+    const onPointer = (event: MouseEvent) => {
+      if (bizMenuRef.current && !bizMenuRef.current.contains(event.target as Node)) setBizOpen(false);
+    };
+    const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") setBizOpen(false); };
+    document.addEventListener("mousedown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [bizOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) setBizOpen(false);
+  }, [menuOpen]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -162,12 +124,30 @@ export default function Home() {
         <div className="navInner shell">
           <a className="brand" href="#home" aria-label="Global Plus home"><Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={270} height={180} priority /></a>
           <nav className={`navlinks ${menuOpen ? "open" : ""}`} aria-label="Main navigation">
-            <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-            <a href="#ecosystem" onClick={() => setMenuOpen(false)}>Ecosystem</a>
-            <a href="#businesses" onClick={() => setMenuOpen(false)}>Businesses</a>
-            <a href="#roadmap" onClick={() => setMenuOpen(false)}>Vision 2031</a>
-            <a href="#reach" onClick={() => setMenuOpen(false)}>Global Reach</a>
-            <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+            <a href="#about" onClick={closeMenus}>About</a>
+            <div className={`navDropdown ${bizOpen ? "open" : ""}`} ref={bizMenuRef}>
+              <button
+                type="button"
+                className="navDropdownTrigger"
+                aria-expanded={bizOpen}
+                aria-haspopup="true"
+                onClick={() => setBizOpen((open) => !open)}
+              >
+                Businesses <span aria-hidden="true">▾</span>
+              </button>
+              <div className="navDropdownMenu" role="menu">
+                <a href="#businesses" role="menuitem" onClick={closeMenus}>All businesses</a>
+                {divisions.map((division) => (
+                  <Link key={division.n} href={division.href} role="menuitem" onClick={closeMenus}>
+                    {division.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <a href="#ecosystem" onClick={closeMenus}>Ecosystem</a>
+            <a href="#roadmap" onClick={closeMenus}>Vision 2031</a>
+            <a href="#reach" onClick={closeMenus}>Global Reach</a>
+            <a href="#contact" onClick={closeMenus}>Contact</a>
           </nav>
           <Link className="navCta" href="/contact">Start a conversation <span>↗</span></Link>
           <button className="menuButton" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle navigation"><span/><span/></button>
@@ -193,25 +173,6 @@ export default function Home() {
           <p className="bigCopy">Our vision is to become the leading ecosystem in East Africa by 2031—integrating a diversified portfolio to create long-term value and regional impact.</p>
           <div className="values"><span>Accountability</span><span>Creativity</span><span>Sustainability</span><span>Excellence</span><span>Cooperation</span><span>Agility</span><span>Customer focus</span></div>
         </div>
-      </section>
-
-      <section className="ecosystemSection reveal" id="ecosystem">
-        <div className="shell ecosystemHeader">
-          <div><p className="sectionLabel light">The Global Plus ecosystem</p><h2>Six capabilities.<br/><em>One growth engine.</em></h2></div>
-          <p>Every part of the group strengthens the next. Capital enables production, infrastructure expands access, trade connects supply, and responsible export creates enduring regional value.</p>
-        </div>
-        <div className="ecosystemStage shell">
-          <div className="ecoOrbit ecoOrbitOne"/><div className="ecoOrbit ecoOrbitTwo"/>
-          <div className="ecoCore"><span>GLO+</span><b>Ecosystem</b><p>Integrated for impact</p></div>
-          {ecosystem.map((item, index) => (
-            <article className={`ecoNode ecoNode${index + 1} reveal delay${(index % 3) + 1}`} key={item.key} tabIndex={0}>
-              <i>{item.key}</i>
-              <div><h3>{item.title}</h3><p>{item.text}</p></div>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-            </article>
-          ))}
-        </div>
-        <div className="ecosystemPillars shell"><span>Portfolio expansion</span><span>Ecosystem integration</span><span>Market leadership</span><span>Investment enablement</span><span>Operational excellence</span><span>Regional impact</span></div>
       </section>
 
       <section className="divisionSection reveal" id="businesses">
@@ -282,6 +243,25 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="ecosystemSection reveal" id="ecosystem">
+        <div className="shell ecosystemHeader">
+          <div><p className="sectionLabel">The Global Plus ecosystem</p><h2>Six capabilities.<br/><em>One growth engine.</em></h2></div>
+          <p>Every part of the group strengthens the next. Capital enables production, infrastructure expands access, trade connects supply, and responsible export creates enduring regional value.</p>
+        </div>
+        <div className="ecosystemStage shell">
+          <div className="ecoOrbit ecoOrbitOne"/><div className="ecoOrbit ecoOrbitTwo"/>
+          <div className="ecoCore"><span>GLO+</span><b>Ecosystem</b><p>Integrated for impact</p></div>
+          {ecosystem.map((item, index) => (
+            <article className={`ecoNode ecoNode${index + 1} reveal delay${(index % 3) + 1}`} key={item.key} tabIndex={0}>
+              <i>{item.key}</i>
+              <div><h3>{item.title}</h3><p>{item.text}</p></div>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+            </article>
+          ))}
+        </div>
+        <div className="ecosystemPillars shell"><span>Portfolio expansion</span><span>Ecosystem integration</span><span>Market leadership</span><span>Investment enablement</span><span>Operational excellence</span><span>Regional impact</span></div>
+      </section>
+
       <section className="roadmapSection reveal" id="roadmap">
         <div className="roadmapBg"><Image src="/stock-manufacturing-v2.jpg" alt="Industrial metalworking representing Global Plus growth strategy" fill sizes="100vw"/></div>
         <div className="roadmapContent shell">
@@ -306,93 +286,27 @@ export default function Home() {
       <section className="globalSection reveal" id="reach">
         <div className="orbitScene" aria-hidden="true">
           <div className="orbit orbitOne"/><div className="orbit orbitTwo"/>
-          <div className="globeDisc"><Image src="/global-plus-logo-dark.png" alt="" width={580} height={387}/></div>
+          <div className="globeDisc"><Image src="/global-plus-logo-light.png" alt="" width={580} height={387}/></div>
           <span className="routePoint p1"/><span className="routePoint p2"/><span className="routePoint p3"/>
         </div>
         <div className="globalCopy shell">
-          <p className="sectionLabel light">Regional & global outlook</p>
+          <p className="sectionLabel">Regional & global outlook</p>
           <h2>Ethiopia at the center<br/>of <em>opportunity.</em></h2>
           <p>With access through Djibouti and a strategic focus on East Africa and the Middle East, Global Plus is building the partnerships, certification and logistics needed to compete across borders.</p>
           <div className="marketLegend"><span><i className="active"/> Established focus</span><span><i/> Strategic growth market</span></div>
         </div>
       </section>
 
-      <section className="contactSection shell reveal" id="contact">
-        <p className="sectionLabel">Begin a partnership</p>
-        <h2>Let&apos;s build the next<br/><em>opportunity together.</em></h2>
-        <p>Choose a division, share your objective, and connect with the Global Plus team.</p>
-        <Link className="goldButton" href="/contact">Talk to our team <span>↗</span></Link>
+      <section className="contactSection reveal" id="contact">
+        <div className="shell">
+          <p className="sectionLabel light">Begin a partnership</p>
+          <h2>Let&apos;s build the next<br/><em>opportunity together.</em></h2>
+          <p>Choose a division, share your objective, and connect with the Global Plus team.</p>
+          <Link className="goldButton" href="/contact">Talk to our team <span>↗</span></Link>
+        </div>
       </section>
 
-      <footer className="siteFooter" id="office">
-        <div className="footerStage reveal">
-          <div className="footerPanel">
-            <div className="footerIdentity">
-              <Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={200} height={134}/>
-              <p>Diversified expertise. One global vision.</p>
-            </div>
-
-            <div className="footerVisit">
-              <p className="footerEyebrow">Visit</p>
-              <h2>Head office · Addis Ababa</h2>
-              <address>
-                XQVP+W8W, Bole Medhanialem area<br/>
-                Opposite Golden Tulip Hotel<br/>
-                Milkomy City Complex, 3rd floor, Office 310<br/>
-                Woreda 3, Addis Ababa, Ethiopia
-              </address>
-              <a className="footerMapsLink" href="https://www.google.com/maps/search/?api=1&query=XQVP%2BW8W%2C%20Bole%20Medhanialem%2C%20Addis%20Ababa%2C%20Ethiopia" target="_blank" rel="noreferrer">Open in Google Maps <span>↗</span></a>
-            </div>
-          </div>
-
-          <div className="footerMedia">
-            <div className="footerMap" aria-label="Office location map">
-              <iframe
-                title="Global Plus head office in Bole Medhanialem, Addis Ababa"
-                src="https://www.google.com/maps?q=XQVP%2BW8W%2C%20Bole%20Medhanialem%2C%20Addis%20Ababa%2C%20Ethiopia&output=embed"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-              <div className="mapCorner"><span>Global Plus</span><b>Head office</b></div>
-            </div>
-
-            <div className="footerChannels">
-              <p className="footerEyebrow">Connect</p>
-              <ul>
-                {contactChannels.map((channel) => (
-                  <li key={channel.id}>
-                    <a
-                      className={`channelLink ${channel.id}`}
-                      href={channel.href}
-                      target={channel.external ? "_blank" : undefined}
-                      rel={channel.external ? "noreferrer" : undefined}
-                      title={channel.title}
-                      aria-label={channel.title}
-                    >
-                      <span className="channelIcon"><ContactIcon id={channel.id}/></span>
-                      <span className="channelMeta">
-                        <strong>{channel.label}</strong>
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="footerBottom shell">
-          <nav aria-label="Footer">
-            <a href="#about">About</a>
-            <a href="#ecosystem">Ecosystem</a>
-            <a href="#businesses">Businesses</a>
-            <a href="#roadmap">Vision 2031</a>
-            <a href="#reach">Global reach</a>
-            <Link href="/contact">Contact</Link>
-          </nav>
-          <small>© 2026 Global Plus Business Group. All rights reserved.</small>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
