@@ -177,7 +177,7 @@ export default function Home() {
       </header>
 
       <section className="newHero" id="home">
-        <Image className="heroImage" src="/stock-trade.jpg" alt="International container port representing Global Plus trade operations" fill sizes="100vw" priority />
+        <Image className="heroImage" src="/stock-trade.jpg" alt="International container port representing Global Plus trade operations" fill sizes="100vw" priority quality={85} />
         <div className="heroShade"/><div className="heroGrid"/>
         <div className="heroCopy shell">
           <p className="kicker"><span/> Ethiopia rooted · Globally connected</p>

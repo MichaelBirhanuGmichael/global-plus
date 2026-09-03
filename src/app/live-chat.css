@@ -1,0 +1,50 @@
+.liveChat{position:fixed;right:22px;bottom:22px;z-index:80;font-family:var(--font-sans),system-ui,sans-serif}
+.liveChatFab{width:60px;height:60px;border:0;border-radius:50%;background:#0a7cff;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 28px #0a7cff55,0 4px 10px #04102033;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;position:relative}
+.liveChatFab:hover,.liveChatFab:focus-visible{transform:translateY(-2px) scale(1.03);box-shadow:0 16px 34px #0a7cff66,0 6px 14px #04102040;outline:none}
+.liveChatFab.isOpen{background:#1c1e21}
+.liveChatFab svg{width:28px;height:28px}
+.liveChatFabBadge{position:absolute;top:8px;right:8px;width:12px;height:12px;border-radius:50%;background:#e4212b;border:2px solid #fff;box-shadow:0 0 0 1px #e4212b44}
+.liveChatPanel{position:absolute;right:0;bottom:76px;width:min(380px,calc(100vw - 28px));height:min(560px,calc(100svh - 110px));background:#fff;border-radius:18px;box-shadow:0 18px 50px #04102040,0 2px 8px #04102018;display:flex;flex-direction:column;overflow:hidden;animation:liveChatIn .22s ease}
+.liveChatHeader{min-height:58px;padding:0 14px 0 18px;display:flex;align-items:center;justify-content:center;position:relative;border-bottom:1px solid #e8eaee}
+.liveChatHeader h2{margin:0;font-size:16px;font-weight:700;color:#050505}
+.liveChatHeader .liveChatIconBtn{position:absolute;right:8px;top:50%;transform:translateY(-50%)}
+.liveChatHeaderThread{justify-content:space-between;gap:8px;padding:10px 8px}
+.liveChatHeaderThread .liveChatIconBtn{position:static;transform:none}
+.liveChatHeaderPerson{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
+.liveChatHeaderPerson strong{display:block;font-size:14px;color:#050505;line-height:1.2}
+.liveChatHeaderPerson span{display:block;font-size:11px;color:#8a8d91;margin-top:2px}
+.liveChatIconBtn{width:36px;height:36px;border:0;border-radius:50%;background:transparent;color:#5e6166;display:grid;place-items:center;cursor:pointer}
+.liveChatIconBtn:hover,.liveChatIconBtn:focus-visible{background:#f0f2f5;outline:none}
+.liveChatIconBtn svg{width:18px;height:18px}
+.liveChatThreadRow{width:100%;border:0;border-bottom:1px solid #eef0f3;background:#fff;padding:14px 16px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;text-align:left;cursor:pointer}
+.liveChatThreadRow:hover,.liveChatThreadRow:focus-visible{background:#f7f8fa;outline:none}
+.liveChatAvatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(145deg,#0b3d91,#0a7cff);color:#fff;display:grid;place-items:center;font-weight:700;font-size:18px;flex-shrink:0}
+.liveChatAvatarSm{width:36px;height:36px;font-size:14px}
+.liveChatThreadMeta{min-width:0;display:flex;flex-direction:column;gap:3px}
+.liveChatThreadMeta strong{font-size:14px;color:#050505}
+.liveChatThreadMeta>span{font-size:13px;color:#65676b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.liveChatThreadAside{display:flex;flex-direction:column;align-items:flex-end;gap:8px;align-self:start;padding-top:2px}
+.liveChatThreadAside time{font-size:12px;color:#8a8d91}
+.liveChatDot{width:10px;height:10px;border-radius:50%;background:#e4212b;display:block}
+.liveChatBody{flex:1;overflow:auto;padding:18px 14px;background:linear-gradient(180deg,#f6f7f9,#fff 40%);display:flex;flex-direction:column;gap:10px}
+.liveChatBubble{margin:0;max-width:86%;padding:10px 14px;border-radius:18px;font-size:14px;line-height:1.45;width:fit-content}
+.liveChatBubble.bot{align-self:flex-start;background:#f0f2f5;color:#050505;border-bottom-left-radius:6px}
+.liveChatBubble.user{align-self:flex-end;background:#0a7cff;color:#fff;border-bottom-right-radius:6px}
+.liveChatStarters{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.liveChatStarters button{border:1px solid #d0d5dd;background:#fff;color:#0b3d91;border-radius:999px;padding:8px 12px;font-size:12px;cursor:pointer}
+.liveChatStarters button:hover,.liveChatStarters button:focus-visible{border-color:#0a7cff;background:#f0f7ff;outline:none}
+.liveChatFooter{border-top:1px solid #e8eaee;padding:10px 12px 12px;background:#fff;display:grid;gap:8px}
+.liveChatWhatsApp{border:0;border-radius:10px;background:#25d366;color:#04210d;font-size:12px;font-weight:700;padding:10px 12px;cursor:pointer}
+.liveChatWhatsApp:hover,.liveChatWhatsApp:focus-visible{filter:brightness(.96);outline:none}
+.liveChatComposer{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.liveChatComposer input{width:100%;border:1px solid #dce0e6;border-radius:22px;padding:11px 14px;font:inherit;font-size:14px;background:#f0f2f5;color:#050505}
+.liveChatComposer input:focus{outline:2px solid #0a7cff55;border-color:#0a7cff;background:#fff}
+.liveChatComposer button{width:40px;height:40px;border:0;border-radius:50%;background:#0a7cff;color:#fff;display:grid;place-items:center;cursor:pointer}
+.liveChatComposer button:disabled{opacity:.45;cursor:not-allowed}
+.liveChatComposer button svg{width:18px;height:18px}
+@keyframes liveChatIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:560px){
+  .liveChat{right:14px;bottom:14px}
+  .liveChatPanel{bottom:72px;height:min(640px,calc(100svh - 96px));border-radius:16px}
+  .liveChatFab{width:56px;height:56px}
+}

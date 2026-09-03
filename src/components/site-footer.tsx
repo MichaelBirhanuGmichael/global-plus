@@ -88,9 +88,10 @@ export default function SiteFooter() {
           <div className="footerMap" aria-label="Office location map">
             <iframe
               title="Global Plus head office in Bole Medhanialem, Addis Ababa"
-              src="https://www.google.com/maps?q=XQVP%2BW8W%2C%20Bole%20Medhanialem%2C%20Addis%20Ababa%2C%20Ethiopia&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.4817668631977!2d38.7874602!3d8.9956766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b852fb88f982d%3A0x39091497a93dacb3!2sMilkomi%20City%20Complex!5e1!3m2!1sen!2set!4v1788441197272!5m2!1sen!2set"
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
             />
             <div className="mapCorner"><span>Global Plus</span><b>Head office</b></div>
           </div>

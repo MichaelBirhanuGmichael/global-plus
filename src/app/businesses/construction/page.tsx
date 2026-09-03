@@ -22,7 +22,24 @@ export default function ConstructionPage(){return <main className="buildPage">
   {/* <section className="buildStatement"><p className="buildEyebrow">Infrastructure for growth</p><div><h2>From essential systems<br/>to <em>city-shaping work.</em></h2><p>Global Plus brings building, road and waterworks capabilities together under a coordinated contracting model designed for accountable delivery and long-term value.</p></div></section> */}
   <section className="buildDelivery"><div className="buildDeliveryCopy"><p className="buildEyebrow">Project delivery</p><h2>One clear path<br/>from plan to handover.</h2><p>Each project moves through a controlled sequence that aligns people, materials, equipment and decisions—helping teams manage quality, safety, schedule and scope.</p><ol>{phases.map((p,i)=><li key={p}><b>{String(i+1).padStart(2,"0")}</b><span>{p}</span></li>)}</ol></div><div className="buildDeliveryMedia"><Image src="/ethiopia-construction-rail.jpg" alt="Ethiopian infrastructure crew working on a concrete foundation" fill sizes="55vw"/><span>Plan · Build · Deliver</span></div></section>
   <section className="buildWater"><div className="buildWaterImage"><Image src="/ethiopia-construction-water.jpg" alt="Water infrastructure construction supporting an Ethiopian community" fill sizes="50vw"/></div><div className="buildWaterCopy"><p className="buildEyebrow">Essential infrastructure</p><h2>Water systems that<br/><em>strengthen communities.</em></h2><p>Waterworks require technical care and local understanding. Our contracting direction connects civil execution with responsible planning and dependable project coordination.</p><ul><li>Waterworks contracting</li><li>Civil construction</li><li>Site coordination</li><li>Quality monitoring</li><li>Resource planning</li><li>Project handover</li></ul></div></section>
-  <section className="buildBand"><p>Plan</p><span>→</span><p>Mobilize</p><span>→</span><p>Construct</p><span>→</span><p>Deliver</p></section>
+  <section className="buildBand" aria-label="Construction delivery pathway">
+    <div className="buildBandInner">
+      {[
+        ["01", "Plan"],
+        ["02", "Mobilize"],
+        ["03", "Construct"],
+        ["04", "Deliver"],
+      ].map(([num, label], index, list) => (
+        <div className="buildBandStepWrap" key={label}>
+          <article className="buildBandStep" style={{ ["--i" as string]: index }}>
+            <b>{num}</b>
+            <p>{label}</p>
+          </article>
+          {index < list.length - 1 ? <span className="buildBandArrow" aria-hidden="true"><i/></span> : null}
+        </div>
+      ))}
+    </div>
+  </section>
   <section className="buildContact" id="build-contact"><p className="buildEyebrow">Start a project conversation</p><h2>Build what matters.<br/><em>Build with Global Plus.</em></h2><p>Share the project type, location, scope and delivery requirements. Our team will help define the next steps.</p><Link href="/contact?division=Construction%20%26%20Infrastructure">Start a conversation <span>↗</span></Link></section>
   <SiteFooter />
 </main>}

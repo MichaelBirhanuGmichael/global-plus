@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
+import LiveChat from "@/components/live-chat";
 import "./globals.css";
 import "./logo-overrides.css";
 import "./experience.css";
@@ -14,6 +15,7 @@ import "./construction.css";
 import "./minerals.css";
 import "./contact.css";
 import "./business-nav.css";
+import "./live-chat.css";
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],
@@ -38,7 +40,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <LiveChat />
+      </body>
     </html>
   );
 }

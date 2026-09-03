@@ -37,9 +37,17 @@ export default function AgribusinessPage() {
       <div className="agriOriginCopy"><p className="agriEyebrow">Flagship value chain</p><h2>Coffee,<br/>fully connected.</h2><p>Our coffee capability follows the product from landscape and harvest through washing, drying, hulling, grading and export-ready preparation—protecting its identity at every stage.</p><ol>{process.map((step,index)=><li key={step}><b>{String(index+1).padStart(2,"0")}</b><span>{step}</span></li>)}</ol></div>
     </section>
 
-    <section className="agriStatement"><p className="agriEyebrow">Rooted in provenance</p><div><h2>Turning agricultural<br/>potential into <em>global value.</em></h2><p>Global Plus connects Ethiopian producers with international markets through an integrated system of sourcing, processing, quality control, certification and logistics.</p></div></section>
+    <section className="agriStatement">
+      <Image className="agriStatementBg" src="/agri-coffee-roast-hd.png" alt="" fill sizes="100vw" quality={95} unoptimized aria-hidden="true"/>
+      <div className="agriStatementShade" aria-hidden="true"/>
+      <div className="agriStatementCopy">
+        <p className="agriEyebrow">Rooted in provenance</p>
+        <h2>Turning agricultural<br/>potential into <em>global value.</em></h2>
+        <p>Global Plus connects Ethiopian producers with international markets through an integrated system of sourcing, processing, quality control, certification and logistics.</p>
+      </div>
+    </section>
 
-    <section className="agriProof"><div className="agriProofImage"><Image src="/ethiopia-coffee-yirgacheffe.jpg" alt="Coffee washing at a station in Yirgacheffe, Ethiopia" fill sizes="50vw"/></div><div className="agriProofCopy"><p className="agriEyebrow">Market readiness</p><h2>Prepared for the<br/><em>next destination.</em></h2><div className="agriProofList"><span>Quality inspection</span><span>Product grading</span><span>Export documentation</span><span>Certification coordination</span><span>Packaging preparation</span><span>Commodity logistics</span></div><p>Requirements are aligned to the product, destination and buyer specification—creating a clear path from Ethiopia to regional and international customers.</p></div></section>
+    <section className="agriProof"><div className="agriProofImage"><Image src="/agri-coffee-sorting-hd.png" alt="Hands sorting and drying coffee beans under sunlight in Ethiopia" fill sizes="50vw" quality={95} priority unoptimized/></div><div className="agriProofCopy"><p className="agriEyebrow">Market readiness</p><h2>Prepared for the<br/><em>next destination.</em></h2><div className="agriProofList"><span>Quality inspection</span><span>Product grading</span><span>Export documentation</span><span>Certification coordination</span><span>Packaging preparation</span><span>Commodity logistics</span></div><p>Requirements are aligned to the product, destination and buyer specification—creating a clear path from Ethiopia to regional and international customers.</p></div></section>
 
     <section className="agriMarkets" aria-label="Agribusiness market pathway">
       <div className="agriMarketsInner">
