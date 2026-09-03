@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import SiteBusinessNav from "@/components/site-business-nav";
 import SiteFooter from "@/components/site-footer";
 
 export const metadata: Metadata = {title:"Trading & Distribution | Global Plus Business Group",description:"Import, distribution and trade representation across ICT, electrical goods, stationery, chemicals, plastics, batteries and consumer inputs."};
@@ -15,7 +16,7 @@ const categories=[
 ];
 
 export default function TradingPage(){return <main className="tradePage">
-  <header className="tradeNav"><Link href="/" aria-label="Global Plus home"><Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={210} height={140}/></Link><nav><Link href="/#businesses">All businesses</Link><Link className="tradeNavCta" href="/contact">Start a conversation <span>↗</span></Link></nav></header>
+  <SiteBusinessNav accent="trading" />
   <section className="tradeHero"><Image src="/ethiopia-trade-modjo.jpg" alt="Container logistics at Ethiopia's Modjo Dry Port" fill priority sizes="100vw"/><div className="tradeHeroShade"/><div className="tradeLines"/><div className="tradeHeroCopy"><p><span>02</span> Trading & Distribution</p><h1>Connected supply.<br/><em>Confident</em> markets.</h1><div><span>Strategic sourcing</span><span>Reliable movement</span><span>Market access</span></div></div><a className="tradeScroll" href="#trade-categories">Explore capabilities <span>↓</span></a></section>
   <section className="tradeCategories" id="trade-categories"><div className="tradeCategoriesHead"><p className="tradeEyebrow">Core capabilities</p><h2>Products that keep<br/><em>business moving.</em></h2></div><div className="tradeCategoryGrid">{categories.map(([n,t,d])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p><a href="#trade-contact">Discuss requirements ↗</a></article>)}</div></section>
   {/* <section className="tradeStatement"><p className="tradeEyebrow">Commerce in motion</p><div><h2>Moving essential products<br/>with <em>purpose.</em></h2><p>Global Plus connects international suppliers with Ethiopian buyers through coordinated procurement, import management, distribution and domestic trade representation.</p></div></section> */}

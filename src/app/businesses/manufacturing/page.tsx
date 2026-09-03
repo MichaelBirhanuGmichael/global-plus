@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import SiteBusinessNav from "@/components/site-business-nav";
 import SiteFooter from "@/components/site-footer";
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ const operatingModel = ["Source inputs", "Engineer production", "Control quality
 
 export default function ManufacturingPage() {
   return <main className="mfgPage">
-    <header className="mfgNav"><Link href="/" aria-label="Global Plus home"><Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={210} height={140}/></Link><nav><Link href="/#businesses">All businesses</Link><Link href="/contact" className="mfgNavCta">Start a conversation <span>↗</span></Link></nav></header>
+    <SiteBusinessNav accent="manufacturing" />
 
     <section className="mfgHero">
       <Image src="/ethiopia-manufacturing-welding.jpg" alt="Industrial metalworking and manufacturing operations in Ethiopia" fill priority sizes="100vw"/>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 import SiteFooter from "@/components/site-footer";
 
 const divisions = [
@@ -61,6 +61,17 @@ export default function Home() {
   const moveDivision = (direction: number) => setActiveDivision((current) => (current + direction + divisions.length) % divisions.length);
   const closeMenus = () => { setMenuOpen(false); setBizOpen(false); };
 
+  const setHot = (event: PointerEvent<HTMLElement>, on: boolean) => {
+    event.currentTarget.classList.toggle("isHot", on);
+  };
+  const hotHandlers = {
+    onPointerEnter: (event: PointerEvent<HTMLElement>) => setHot(event, true),
+    onPointerLeave: (event: PointerEvent<HTMLElement>) => setHot(event, false),
+    onPointerDown: (event: PointerEvent<HTMLElement>) => setHot(event, true),
+    onPointerUp: (event: PointerEvent<HTMLElement>) => setHot(event, false),
+    onPointerCancel: (event: PointerEvent<HTMLElement>) => setHot(event, false),
+  };
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
@@ -69,17 +80,26 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen && !bizOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeMenus();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen, bizOpen]);
+
+  useEffect(() => {
     if (!bizOpen) return;
     const onPointer = (event: MouseEvent) => {
       if (bizMenuRef.current && !bizMenuRef.current.contains(event.target as Node)) setBizOpen(false);
     };
-    const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") setBizOpen(false); };
     document.addEventListener("mousedown", onPointer);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onPointer);
-      document.removeEventListener("keydown", onKey);
-    };
+    return () => document.removeEventListener("mousedown", onPointer);
   }, [bizOpen]);
 
   useEffect(() => {
@@ -120,11 +140,11 @@ export default function Home() {
 
   return (
     <main>
-      <header className={`siteNav ${scrolled ? "isScrolled" : ""}`}>
+      <header className={`siteNav ${scrolled ? "isScrolled" : ""} ${menuOpen ? "isMenuOpen" : ""}`}>
         <div className="navInner shell">
-          <a className="brand" href="#home" aria-label="Global Plus home"><Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={270} height={180} priority /></a>
+          <a className="brand" href="#home" aria-label="Global Plus home" onClick={closeMenus}><Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={270} height={180} priority /></a>
           <nav className={`navlinks ${menuOpen ? "open" : ""}`} aria-label="Main navigation">
-            <a href="#about" onClick={closeMenus}>About</a>
+            <a href="#about" onClick={closeMenus} {...hotHandlers}>About</a>
             <div className={`navDropdown ${bizOpen ? "open" : ""}`} ref={bizMenuRef}>
               <button
                 type="button"
@@ -132,25 +152,27 @@ export default function Home() {
                 aria-expanded={bizOpen}
                 aria-haspopup="true"
                 onClick={() => setBizOpen((open) => !open)}
+                {...hotHandlers}
               >
-                Businesses <span aria-hidden="true">▾</span>
+                Businesses <span className="navCaret" aria-hidden="true" />
               </button>
               <div className="navDropdownMenu" role="menu">
-                <a href="#businesses" role="menuitem" onClick={closeMenus}>All businesses</a>
+                <a href="#businesses" role="menuitem" onClick={closeMenus} {...hotHandlers}>All businesses</a>
                 {divisions.map((division) => (
-                  <Link key={division.n} href={division.href} role="menuitem" onClick={closeMenus}>
+                  <Link key={division.n} href={division.href} role="menuitem" onClick={closeMenus} {...hotHandlers}>
                     {division.title}
                   </Link>
                 ))}
               </div>
             </div>
-            <a href="#ecosystem" onClick={closeMenus}>Ecosystem</a>
-            <a href="#roadmap" onClick={closeMenus}>Vision 2031</a>
-            <a href="#reach" onClick={closeMenus}>Global Reach</a>
-            <a href="#contact" onClick={closeMenus}>Contact</a>
+            <a href="#ecosystem" onClick={closeMenus} {...hotHandlers}>Ecosystem</a>
+            <a href="#roadmap" onClick={closeMenus} {...hotHandlers}>Vision 2031</a>
+            <a href="#reach" onClick={closeMenus} {...hotHandlers}>Global Reach</a>
+            <a href="#contact" onClick={closeMenus} {...hotHandlers}>Contact</a>
+            <Link className="navMobileCta" href="/contact" onClick={closeMenus} {...hotHandlers}>Start a conversation <span>↗</span></Link>
           </nav>
           <Link className="navCta" href="/contact">Start a conversation <span>↗</span></Link>
-          <button className="menuButton" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle navigation"><span/><span/></button>
+          <button className="menuButton" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label={menuOpen ? "Close navigation" : "Open navigation"}><span/><span/><span/></button>
         </div>
       </header>
 

@@ -13,6 +13,7 @@ import "./trading.css";
 import "./construction.css";
 import "./minerals.css";
 import "./contact.css";
+import "./business-nav.css";
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],

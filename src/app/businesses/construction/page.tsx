@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import SiteBusinessNav from "@/components/site-business-nav";
 import SiteFooter from "@/components/site-footer";
 
 export const metadata: Metadata={title:"Construction & Infrastructure | Global Plus Business Group",description:"Building, road and waterworks contracting supported by general construction, engineering coordination and project delivery."};
@@ -15,7 +16,7 @@ const services=[
 const phases=["Plan & mobilize","Engineer & procure","Build & control","Complete & hand over"];
 
 export default function ConstructionPage(){return <main className="buildPage">
-  <header className="buildNav"><Link href="/" aria-label="Global Plus home"><Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={210} height={140}/></Link><nav><Link href="/#businesses">All businesses</Link><Link className="buildNavCta" href="/contact">Start a conversation <span>↗</span></Link></nav></header>
+  <SiteBusinessNav accent="construction" />
   <section className="buildHero"><Image src="/ethiopia-construction-addis.jpg" alt="Ethiopian construction professionals working on a major Addis Ababa project" fill priority sizes="100vw"/><div className="buildHeroShade"/><div className="buildBlueprint"/><div className="buildHeroCopy"><p><span>03</span> Construction & Infrastructure</p><h1>Building progress.<br/><em>Delivering</em> confidence.</h1><div><span>Engineering focus</span><span>Site discipline</span><span>Lasting value</span></div></div><a className="buildScroll" href="#build-services">Explore capabilities <span>↓</span></a></section>
   <section className="buildServices" id="build-services"><div className="buildServicesHead"><p className="buildEyebrow">Core capabilities</p><h2>Infrastructure built<br/><em>around purpose.</em></h2></div><div className="buildServiceGrid">{services.map(([n,t,d])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p><a href="#build-contact">Discuss a project ↗</a></article>)}</div></section>
   {/* <section className="buildStatement"><p className="buildEyebrow">Infrastructure for growth</p><div><h2>From essential systems<br/>to <em>city-shaping work.</em></h2><p>Global Plus brings building, road and waterworks capabilities together under a coordinated contracting model designed for accountable delivery and long-term value.</p></div></section> */}

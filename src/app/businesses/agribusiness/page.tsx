@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import SiteBusinessNav from "@/components/site-business-nav";
 import SiteFooter from "@/components/site-footer";
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ const process = ["Farm partnerships", "Selective harvest", "Processing", "Gradin
 
 export default function AgribusinessPage() {
   return <main className="agriPage">
-    <header className="agriNav"><Link href="/" aria-label="Global Plus home"><Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={210} height={140}/></Link><nav><Link href="/#businesses">All businesses</Link><Link href="/contact" className="agriNavCta">Start a conversation <span>↗</span></Link></nav></header>
+    <SiteBusinessNav accent="agribusiness" />
 
     <section className="agriHero">
       <Image src="/global-plus-coffee-farm-hero.png" alt="Ripe coffee cherries growing on a highland coffee farm" fill priority sizes="100vw"/>

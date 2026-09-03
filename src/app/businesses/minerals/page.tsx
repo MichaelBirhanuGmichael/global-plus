@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import SiteBusinessNav from "@/components/site-business-nav";
 import SiteFooter from "@/components/site-footer";
 
 export const metadata: Metadata={title:"Minerals & Resources | Global Plus Business Group",description:"Responsible sourcing, certification and export of precious, semi-precious, metallic and industrial minerals from Ethiopia."};
@@ -15,7 +16,7 @@ const resources=[
 const pathway=["Identify source","Verify material","Prepare & certify","Coordinate export"];
 
 export default function MineralsPage(){return <main className="minPage">
-  <header className="minNav"><Link href="/" aria-label="Global Plus home"><Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={210} height={140}/></Link><nav><Link href="/#businesses">All businesses</Link><Link className="minNavCta" href="/contact">Start a conversation <span>↗</span></Link></nav></header>
+  <SiteBusinessNav accent="minerals" />
   <section className="minHero"><Image src="/minerals-hero.webp" alt="Premium copper and malachite mineral specimen" fill priority sizes="100vw" quality={82}/><div className="minHeroShade"/><div className="minHeroCopy"><p><span>05</span> Minerals & Resources</p><h1>Grounded in value.<br/><em>Connected</em> to markets.</h1><div><span>Responsible sourcing</span><span>Verified quality</span><span>Export readiness</span></div></div><a className="minScroll" href="#min-resources">Explore capabilities <span>↓</span></a></section>
   <section className="minResources" id="min-resources"><div className="minResourcesHead"><p className="minEyebrow">Core capabilities</p><h2>Diverse resources.<br/><em>Focused execution.</em></h2></div><div className="minResourceGrid">{resources.map(([n,t,d])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p><a href="#min-contact">Discuss an opportunity ↗</a></article>)}</div></section>
   <section className="minPath"><div className="minPathMedia"><Image src="/minerals-open-pit.webp" alt="Large-scale open-pit mineral mine in Ethiopia" fill sizes="(max-width: 900px) 100vw, 55vw" quality={70}/><span>Source · Verify · Move</span></div><div className="minPathCopy"><p className="minEyebrow">Resource pathway</p><h2>Clarity at<br/>every stage.</h2><p>Mineral trade depends on verified material, reliable documentation and disciplined coordination. Our approach connects each stage into a transparent commercial pathway.</p><ol>{pathway.map((p,i)=><li key={p}><b>{String(i+1).padStart(2,"0")}</b><span>{p}</span></li>)}</ol></div></section>
