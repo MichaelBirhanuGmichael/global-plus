@@ -1,33 +1,39 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 const divisions = [
-  { n: "01", title: "Manufacturing & Industrial", text: "Metal works, electrical manufacturing, cement, concrete and construction materials.", tone: "blue", images: [
+  { n: "01", title: "Manufacturing & Industrial", text: "Metal works, electrical manufacturing, cement, concrete and construction materials.", tone: "blue", href: "/businesses/manufacturing", images: [
     { src: "/ethiopia-manufacturing-welding.jpg", alt: "Industrial welding operations in Ethiopia" },
     { src: "/ethiopia-manufacturing-hawassa.jpg", alt: "Ethiopian technicians at Hawassa Industrial Park" },
     { src: "/ethiopia-manufacturing-workers.jpg", alt: "Ethiopian manufacturing team on an active production floor" },
   ] },
-  { n: "02", title: "Trading & Distribution", text: "ICT, electronics, electrical equipment, stationery, paper and office supply networks.", tone: "gold", images: [
+  { n: "02", title: "Trading & Distribution", text: "ICT, electronics, electrical equipment, stationery, paper and office supply networks.", tone: "gold", href: "/businesses/trading", images: [
     { src: "/ethiopia-trade-modjo.jpg", alt: "Modjo Dry Port logistics hub in Ethiopia" },
     { src: "/ethiopia-trade-port.jpg", alt: "Container operations at Ethiopia's Modjo Dry Port" },
     { src: "/ethiopia-trade-logistics.jpg", alt: "Freight and containers at an Ethiopian inland port" },
   ] },
-  { n: "03", title: "Construction & Infrastructure", text: "Buildings, roads, waterworks, engineering, fleet operations and project delivery.", tone: "red", images: [
+  { n: "03", title: "Construction & Infrastructure", text: "Buildings, roads, waterworks, engineering, fleet operations and project delivery.", tone: "red", href: "/businesses/construction", images: [
     { src: "/ethiopia-construction-rail.jpg", alt: "Ethiopian infrastructure crew pouring a concrete foundation" },
     { src: "/ethiopia-construction-addis.jpg", alt: "Ethiopian construction professionals on a landmark Addis Ababa project" },
     { src: "/ethiopia-construction-water.jpg", alt: "Community water infrastructure construction in Ethiopia" },
   ] },
-  { n: "04", title: "Export & Agribusiness", text: "Premium coffee and tea, minerals, commodity logistics and certified export operations.", tone: "green", images: [
+  { n: "04", title: "Export & Agribusiness", text: "Premium coffee and tea, oilseeds, pulses, cereals, spices, flowers and certified agricultural exports.", tone: "green", href: "/businesses/agribusiness", images: [
     { src: "/ethiopia-coffee-sidama.jpg", alt: "Ethiopian coffee workers processing cherries in Sidama" },
     { src: "/ethiopia-coffee-yirgacheffe.jpg", alt: "Coffee washing at a station in Yirgacheffe, Ethiopia" },
     { src: "/ethiopia-coffee-daye-bensa.png", alt: "Ethiopian coffee team washing and sorting beans at Daye Bensa" },
   ] },
+  { n: "05", title: "Minerals & Resources", text: "Precious and semi-precious minerals, metallic and industrial minerals, certification, responsible sourcing and export logistics.", tone: "mineral", href: "/businesses/minerals", images: [
+    { src: "/global-plus-copper-bearing-mineral.png", alt: "Green mineral material at a Global Plus project site" },
+    { src: "/ethiopia-opal-mining.jpg", alt: "Mineral extraction activity at an Ethiopian opal mining area" },
+    { src: "/ethiopia-open-pit-mining.jpg", alt: "Large-scale mineral extraction at an Ethiopian open-pit mine" },
+  ] },
 ];
 
 const roadmap = [
-  { phase: "Foundation", label: "Now", title: "Integrated operations", text: "Four strategic clusters supported by shared finance, people, technology, legal and quality systems." },
+  { phase: "Foundation", label: "Now", title: "Integrated operations", text: "Five strategic clusters supported by shared finance, people, technology, legal and quality systems." },
   { phase: "Expansion", label: "Next", title: "Cement export readiness", text: "Developing efficient grinding, certification and logistics capabilities for regional demand." },
   { phase: "Growth", label: "Future", title: "Mining & regional leadership", text: "Expanding exploration, beneficiation and responsible partnerships across strategic minerals." },
 ];
@@ -46,6 +52,10 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [divisionFrame, setDivisionFrame] = useState(0);
   const [divisionSlidesPaused, setDivisionSlidesPaused] = useState(false);
+  const [activeDivision, setActiveDivision] = useState(0);
+  const divisionTouchStart = useRef<number | null>(null);
+
+  const moveDivision = (direction: number) => setActiveDivision((current) => (current + direction + divisions.length) % divisions.length);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -60,6 +70,12 @@ export default function Home() {
     return () => window.clearInterval(timer);
   }, [divisionSlidesPaused]);
 
+  useEffect(() => {
+    if (divisionSlidesPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => setActiveDivision((current) => (current + 1) % divisions.length), 8200);
+    return () => window.clearInterval(timer);
+  }, [divisionSlidesPaused]);
+
   return (
     <main>
       <header className={`siteNav ${scrolled ? "isScrolled" : ""}`}>
@@ -68,7 +84,7 @@ export default function Home() {
           <nav className={`navlinks ${menuOpen ? "open" : ""}`} aria-label="Main navigation">
             <a href="#about" onClick={() => setMenuOpen(false)}>About</a><a href="#ecosystem" onClick={() => setMenuOpen(false)}>Ecosystem</a><a href="#businesses" onClick={() => setMenuOpen(false)}>Businesses</a><a href="#roadmap" onClick={() => setMenuOpen(false)}>Vision 2031</a><a href="#reach" onClick={() => setMenuOpen(false)}>Global Reach</a>
           </nav>
-          <a className="navCta" href="#contact">Start a conversation <span>↗</span></a>
+          <Link className="navCta" href="/contact">Start a conversation <span>↗</span></Link>
           <button className="menuButton" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle navigation"><span/><span/></button>
         </div>
       </header>
@@ -82,7 +98,7 @@ export default function Home() {
           <p>Connecting resources, industries and markets through integrated manufacturing, trade, construction and export expertise.</p>
           <div className="heroActions"><a className="goldButton" href="#businesses">Explore our businesses <span>→</span></a><a className="watchLink" href="#roadmap"><i>▶</i> Discover our vision</a></div>
         </div>
-        <div className="heroBottom shell"><span>Scroll to explore</span><div className="scrollLine"/><p><b>04</b> strategic clusters</p><p><b>02</b> growth engines</p></div>
+        <div className="heroBottom shell"><span>Scroll to explore</span><div className="scrollLine"/><p><b>05</b> strategic clusters</p><p><b>02</b> growth engines</p></div>
       </section>
 
       <section className="statement shell" id="about">
@@ -102,31 +118,17 @@ export default function Home() {
 
       <section className="divisionSection" id="businesses">
         <div className="shell divisionIntro"><p className="sectionLabel light">Our business ecosystem</p><h2>Distinct expertise.<br/><em>One powerful group.</em></h2><p>Our clusters operate with specialist focus and shared strength—unlocking efficiency, scale and integrated delivery.</p></div>
-        <div className="divisionStack shell">
-          {divisions.map((d) => <article className={`divisionCard ${d.tone}`} key={d.n} onMouseEnter={() => setDivisionSlidesPaused(true)} onMouseLeave={() => setDivisionSlidesPaused(false)} onFocusCapture={() => setDivisionSlidesPaused(true)} onBlurCapture={() => setDivisionSlidesPaused(false)}>
+        <div className="divisionCarousel shell" role="region" aria-label="Global Plus business divisions" tabIndex={0} onKeyDown={(event) => { if (event.key === "ArrowLeft") moveDivision(-1); if (event.key === "ArrowRight") moveDivision(1); }} onTouchStart={(event) => { divisionTouchStart.current = event.touches[0].clientX; }} onTouchEnd={(event) => { if (divisionTouchStart.current === null) return; const distance = event.changedTouches[0].clientX - divisionTouchStart.current; if (Math.abs(distance) > 55) moveDivision(distance > 0 ? -1 : 1); divisionTouchStart.current = null; }}>
+          <div className="divisionViewport"><div className="divisionTrack" style={{ transform: `translate3d(-${activeDivision * 100}%,0,0)` }}>
+          {divisions.map((d, divisionIndex) => <article className={`divisionCard ${d.tone}`} key={d.n} aria-hidden={activeDivision !== divisionIndex} onMouseEnter={() => setDivisionSlidesPaused(true)} onMouseLeave={() => setDivisionSlidesPaused(false)} onFocusCapture={() => setDivisionSlidesPaused(true)} onBlurCapture={() => setDivisionSlidesPaused(false)}>
             <div className="divisionSlides" aria-live="off">{d.images.map((photo, index) => <Image className={`divisionSlide ${divisionFrame === index ? "active" : ""}`} key={photo.src} src={photo.src} alt={photo.alt} fill sizes="(max-width: 800px) 100vw, 50vw"/>)}</div>
             <div className="cardShade"/><span className="cardNumber">{d.n}</span>
             <div className="divisionProgress" aria-label={`${d.title} image controls`}>{d.images.map((photo, index) => <button className={divisionFrame === index ? "active" : ""} key={photo.src} onClick={() => setDivisionFrame(index)} aria-label={`Show image ${index + 1} of ${d.images.length}`} aria-pressed={divisionFrame === index}><span/></button>)}</div>
-            <div className="cardContent"><p>Strategic cluster</p><h3>{d.title}</h3><span>{d.text}</span><a href="#contact">Explore division ↗</a></div>
+            <div className="cardContent"><p>Strategic cluster</p><h3>{d.title}</h3><span>{d.text}</span>{d.href ? <Link href={d.href}>Explore division ↗</Link> : <a href="#contact">Explore division ↗</a>}</div>
           </article>)}
+          </div></div><div className="divisionSideArrows"><button className="divisionPrev" onClick={() => moveDivision(-1)} aria-label="Previous division"><span>‹</span></button><button className="divisionNext" onClick={() => moveDivision(1)} aria-label="Next division"><span>›</span></button></div>
+          <div className="divisionNav"><div className="divisionCount"><b>{String(activeDivision + 1).padStart(2,"0")}</b><span>/ {String(divisions.length).padStart(2,"0")}</span></div><div className="divisionDots">{divisions.map((division, index) => <button key={division.n} className={activeDivision === index ? "active" : ""} onClick={() => setActiveDivision(index)} aria-label={`Show ${division.title}`} aria-current={activeDivision === index ? "true" : undefined}><span/></button>)}</div></div>
         </div>
-      </section>
-
-      <section className="coffeeJourney" id="coffee">
-        <div className="coffeeJourneyIntro shell"><div><p className="sectionLabel">From Ethiopian origin</p><h2>Every bean has<br/><em>a journey.</em></h2></div><p>Global Plus connects the entire coffee value chain—from the farm landscape and careful harvest to export-ready preparation, quality assurance and international logistics.</p></div>
-        <div className="originStory shell">
-          <div className="originVideo"><video autoPlay muted loop playsInline poster="/stock-coffee.jpg"><source src="/global-plus-coffee-origin.mp4" type="video/mp4"/></video><div className="videoVeil"/><span className="videoBadge"><i/> Field footage · Coffee origin</span><div className="videoCaption"><b>01</b><h3>At origin</h3><p>Understanding the farm, landscape and growing environment where quality begins.</p></div></div>
-          <div className="originQuote"><span>Origin to export</span><blockquote>“Protecting quality at every stage of the value chain.”</blockquote><p>The company profile identifies coffee and tea exports, certification, quality assurance and logistics as core agribusiness capabilities.</p></div>
-        </div>
-        <div className="processRail shell">
-          <article><b>02</b><span>Harvest</span><h3>Selective picking</h3><p>Ripe coffee cherries are carefully collected to protect quality and consistency.</p></article>
-          <article><b>03</b><span>Processing</span><h3>Washing & pulping</h3><p>Cherries are cleaned and processed using the method best suited to the lot.</p></article>
-          <article><b>04</b><span>Preparation</span><h3>Drying</h3><p>Controlled drying stabilizes the beans while preserving their distinctive character.</p></article>
-          <article><b>05</b><span>Refinement</span><h3>Hulling & grading</h3><p>Dried coffee is hulled, sorted and graded to remove defects and meet specifications.</p></article>
-          <article><b>06</b><span>Value addition</span><h3>Roasting & quality</h3><p>Selected lots can be roasted and prepared with close attention to profile and consistency.</p></article>
-          <article><b>07</b><span>Global delivery</span><h3>Pack, certify & export</h3><p>Quality assurance, export documentation and logistics prepare each order for market.</p></article>
-        </div>
-        <div className="coffeeJourneyEnd shell"><p><span>Farm</span><i>→</i><span>Mill</span><i>→</i><span>Quality</span><i>→</i><span>Port</span><i>→</i><span>World</span></p><a className="inkButton" href="#contact">Explore agribusiness <span>→</span></a></div>
       </section>
 
       <section className="roadmapSection" id="roadmap">
@@ -139,7 +141,7 @@ export default function Home() {
         <div className="globalCopy shell"><p className="sectionLabel light">Regional & global outlook</p><h2>Ethiopia at the center<br/>of <em>opportunity.</em></h2><p>With access through Djibouti and a strategic focus on East Africa and the Middle East, Global Plus is building the partnerships, certification and logistics needed to compete across borders.</p><div className="marketLegend"><span><i className="active"/> Established focus</span><span><i/> Strategic growth market</span></div></div>
       </section>
 
-      <section className="contactSection shell" id="contact"><p className="sectionLabel">Begin a partnership</p><h2>Let&apos;s build the next<br/><em>opportunity together.</em></h2><p>Choose a division, share your objective, and connect with the Global Plus team.</p><a className="goldButton" href="#home">Talk to our team <span>↗</span></a></section>
+      <section className="contactSection shell" id="contact"><p className="sectionLabel">Begin a partnership</p><h2>Let&apos;s build the next<br/><em>opportunity together.</em></h2><p>Choose a division, share your objective, and connect with the Global Plus team.</p><Link className="goldButton" href="/contact">Talk to our team <span>↗</span></Link></section>
       <section className="officeSection" id="office">
         <div className="officeDetails"><div><p className="sectionLabel light">Head office · Addis Ababa</p><h2>Come and meet<br/><em>Global Plus.</em></h2></div><div className="officeAddress"><span>Location</span><address>XQVP+W8W, Bole Medhanialem area<br/>Opposite Golden Tulip Hotel<br/>Milkomy City Complex, 3rd floor, Office 310<br/>Woreda 3, Addis Ababa, Ethiopia</address><a href="https://www.google.com/maps/search/?api=1&query=XQVP%2BW8W%2C%20Bole%20Medhanialem%2C%20Addis%20Ababa%2C%20Ethiopia" target="_blank" rel="noreferrer">Open in Google Maps <b>↗</b></a></div></div>
         <div className="officeMap"><iframe title="Global Plus head office in Bole Medhanialem, Addis Ababa" src="https://www.google.com/maps?q=XQVP%2BW8W%2C%20Bole%20Medhanialem%2C%20Addis%20Ababa%2C%20Ethiopia&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="mapCorner"><span>Global Plus</span><b>Head office</b></div></div>
