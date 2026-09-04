@@ -4,9 +4,15 @@ import Link from "next/link";
 import SiteBusinessNav from "@/components/site-business-nav";
 import SiteFooter from "@/components/site-footer";
 
+const title = "Manufacturing & Industrial | Global Plus Business Group";
+const description = "Manufacturing capability spanning metal products, electrical equipment, domestic appliances, cement, lime, plaster and industrial inputs.";
+
 export const metadata: Metadata = {
-  title: "Manufacturing & Industrial | Global Plus Business Group",
-  description: "Manufacturing capability spanning metal products, electrical equipment, domestic appliances, cement, lime, plaster and industrial inputs.",
+  title,
+  description,
+  alternates: { canonical: "/businesses/manufacturing" },
+  openGraph: { title, description, url: "/businesses/manufacturing", images: ["/ethiopia-manufacturing-welding.jpg"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/ethiopia-manufacturing-welding.jpg"] },
 };
 
 const capabilities = [

@@ -4,9 +4,15 @@ import Link from "next/link";
 import SiteBusinessNav from "@/components/site-business-nav";
 import SiteFooter from "@/components/site-footer";
 
+const title = "Export & Agribusiness | Global Plus Business Group";
+const description = "Ethiopian coffee, tea, oilseeds, pulses, cereals, spices, produce and flowers prepared for international markets by Global Plus Business Group.";
+
 export const metadata: Metadata = {
-  title: "Export & Agribusiness | Global Plus Business Group",
-  description: "Ethiopian coffee, tea, oilseeds, pulses, cereals, spices, produce and flowers prepared for international markets by Global Plus Business Group.",
+  title,
+  description,
+  alternates: { canonical: "/businesses/agribusiness" },
+  openGraph: { title, description, url: "/businesses/agribusiness", images: ["/global-plus-coffee-farm-hero.png"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/global-plus-coffee-farm-hero.png"] },
 };
 
 const products = [

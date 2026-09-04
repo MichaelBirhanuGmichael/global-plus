@@ -4,7 +4,15 @@ import Link from "next/link";
 import SiteBusinessNav from "@/components/site-business-nav";
 import SiteFooter from "@/components/site-footer";
 
-export const metadata: Metadata={title:"Minerals & Resources | Global Plus Business Group",description:"Responsible sourcing, certification and export of precious, semi-precious, metallic and industrial minerals from Ethiopia."};
+const title="Minerals & Resources | Global Plus Business Group";
+const description="Responsible sourcing, certification and export of precious, semi-precious, metallic and industrial minerals from Ethiopia.";
+export const metadata: Metadata={
+  title,
+  description,
+  alternates:{canonical:"/businesses/minerals"},
+  openGraph:{title,description,url:"/businesses/minerals",images:["/minerals-hero.webp"]},
+  twitter:{card:"summary_large_image",title,description,images:["/minerals-hero.webp"]},
+};
 const resources=[
   ["01","Precious minerals","Commercial pathways for responsibly sourced precious mineral opportunities and export-ready supply."],
   ["02","Semi-precious minerals","Identification, quality preparation and trade support for Ethiopia's distinctive semi-precious resources."],

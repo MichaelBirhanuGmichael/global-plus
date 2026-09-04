@@ -5,9 +5,15 @@ import { Suspense } from "react";
 import ContactForm from "@/components/contact-form";
 import SiteFooter from "@/components/site-footer";
 
+const title = "Contact | Global Plus Business Group";
+const description = "Contact Global Plus Business Group in Addis Ababa by phone, WhatsApp, Telegram or email.";
+
 export const metadata: Metadata = {
-  title: "Contact | Global Plus Business Group",
-  description: "Contact Global Plus Business Group in Addis Ababa by phone, WhatsApp, Telegram or email.",
+  title,
+  description,
+  alternates: { canonical: "/contact" },
+  openGraph: { title, description, url: "/contact", images: ["/global-plus-coffee-farm-hero.png"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/global-plus-coffee-farm-hero.png"] },
 };
 
 export default function ContactPage() {

@@ -4,7 +4,15 @@ import Link from "next/link";
 import SiteBusinessNav from "@/components/site-business-nav";
 import SiteFooter from "@/components/site-footer";
 
-export const metadata: Metadata={title:"Construction & Infrastructure | Global Plus Business Group",description:"Building, road and waterworks contracting supported by general construction, engineering coordination and project delivery."};
+const title="Construction & Infrastructure | Global Plus Business Group";
+const description="Building, road and waterworks contracting supported by general construction, engineering coordination and project delivery.";
+export const metadata: Metadata={
+  title,
+  description,
+  alternates:{canonical:"/businesses/construction"},
+  openGraph:{title,description,url:"/businesses/construction",images:["/ethiopia-construction-addis.jpg"]},
+  twitter:{card:"summary_large_image",title,description,images:["/ethiopia-construction-addis.jpg"]},
+};
 const services=[
   ["01","Building works","Commercial, institutional and general building works delivered through coordinated construction teams."],
   ["02","Road works","Road construction and associated civil works supporting safer movement and stronger connectivity."],

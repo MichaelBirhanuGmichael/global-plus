@@ -4,7 +4,15 @@ import Link from "next/link";
 import SiteBusinessNav from "@/components/site-business-nav";
 import SiteFooter from "@/components/site-footer";
 
-export const metadata: Metadata = {title:"Trading & Distribution | Global Plus Business Group",description:"Import, distribution and trade representation across ICT, electrical goods, stationery, chemicals, plastics, batteries and consumer inputs."};
+const title="Trading & Distribution | Global Plus Business Group";
+const description="Import, distribution and trade representation across ICT, electrical goods, stationery, chemicals, plastics, batteries and consumer inputs.";
+export const metadata: Metadata={
+  title,
+  description,
+  alternates:{canonical:"/businesses/trading"},
+  openGraph:{title,description,url:"/businesses/trading",images:["/ethiopia-trade-modjo.jpg"]},
+  twitter:{card:"summary_large_image",title,description,images:["/ethiopia-trade-modjo.jpg"]},
+};
 
 const categories=[
   ["01","ICT & communication","Computers, communication equipment and related technology products for connected organizations."],
