@@ -1,0 +1,158 @@
+/* The shared site header (all pages). Slim, translucent navy with blur; flyout for Businesses; full-screen menu on phones. */
+
+.gpHeader {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  background: rgba(6, 22, 43, 0.82);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.gpHeader.isRaised { background: rgba(6, 22, 43, 0.92); box-shadow: 0 8px 28px rgba(2, 10, 22, 0.28); }
+
+.gpBar {
+  width: min(1240px, calc(100% - 48px));
+  height: 64px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.gpBrand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; flex: none; }
+.gpBrand img { height: 40px; width: auto; display: block; }
+.gpBrandText { display: flex; flex-direction: column; line-height: 1; gap: 4px; }
+.gpBrandText b { font-size: 17px; font-weight: 700; letter-spacing: 0.06em; color: #fff; }
+.gpBrandText b i { font-style: normal; color: #f2a516; }
+.gpBrandText small { font-size: 9px; font-weight: 500; letter-spacing: 0.34em; text-transform: uppercase; color: #9fb2cc; }
+
+.gpNav { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.gpNav > a, .gpFly > button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 450;
+  letter-spacing: 0.005em;
+  color: rgba(235, 241, 250, 0.78);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+.gpNav > a:hover, .gpFly > button:hover, .gpFly.isOpen > button { color: #fff; background: rgba(255, 255, 255, 0.07); }
+.gpNav > a.isCurrent, .gpFly > button.isCurrent { color: #fff; }
+.gpNav > a.isCurrent::after, .gpFly > button.isCurrent::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: #f2a516;
+}
+
+.gpCaret { width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform 0.25s; }
+.gpFly.isOpen .gpCaret { transform: translateY(1px) rotate(225deg); }
+
+.gpFly { position: relative; }
+.gpFly::after { content: ""; position: absolute; left: -10px; right: -10px; top: 100%; height: 14px; }
+.gpPanel {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  width: 560px;
+  transform: translate(-50%, 8px);
+  padding: 12px;
+  background: rgba(8, 26, 50, 0.96);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 30px 60px rgba(2, 10, 22, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s, transform 0.22s, visibility 0.22s;
+}
+.gpFly.isOpen .gpPanel { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0); }
+.gpPanelGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.gpPanelGrid a { display: flex; flex-direction: column; gap: 3px; padding: 12px 14px; border-radius: 10px; text-decoration: none; transition: background 0.2s; }
+.gpPanelGrid a:hover, .gpPanelGrid a[aria-current="page"] { background: rgba(255, 255, 255, 0.07); }
+.gpPanelGrid strong { font-size: 14px; font-weight: 600; color: #fff; }
+.gpPanelGrid span { font-size: 12.5px; line-height: 1.4; color: #9fb2cc; }
+.gpPanelAll { display: block; margin-top: 6px; padding: 12px 14px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 13px; font-weight: 600; color: #f2a516; text-decoration: none; }
+.gpPanelAll:hover { color: #ffc24a; }
+
+.gpCta {
+  flex: none;
+  padding: 9px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #07172d;
+  text-decoration: none;
+  background: #f2a516;
+  border-radius: 999px;
+  transition: background 0.2s, transform 0.2s;
+}
+.gpCta:hover { background: #ffb92e; transform: translateY(-1px); }
+
+.gpBurger { display: none; flex: none; width: 40px; height: 40px; margin-left: auto; background: none; border: 0; cursor: pointer; position: relative; }
+.gpBurger span { position: absolute; left: 10px; right: 10px; height: 1.5px; background: #fff; border-radius: 2px; transition: transform 0.3s, top 0.3s; }
+.gpBurger span:first-child { top: 16px; }
+.gpBurger span:last-child { top: 23px; }
+.gpBurger[aria-expanded="true"] span:first-child { top: 19.5px; transform: rotate(45deg); }
+.gpBurger[aria-expanded="true"] span:last-child { top: 19.5px; transform: rotate(-45deg); }
+
+.gpSheet { display: none; }
+
+@media (max-width: 900px) {
+  .gpBar { height: 58px; width: calc(100% - 32px); gap: 12px; }
+  .gpBrandText b { font-size: 15px; }
+  .gpNav, .gpCta { display: none; }
+  .gpBurger { display: block; }
+  .gpSheet {
+    display: block;
+    position: fixed;
+    inset: 58px 0 0 0;
+    padding: 18px 24px 40px;
+    overflow-y: auto;
+    background: rgba(6, 22, 43, 0.98);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.28s, transform 0.28s, visibility 0.28s;
+  }
+  .gpSheet.isOpen { opacity: 1; visibility: visible; transform: none; }
+  .gpSheet nav { display: flex; flex-direction: column; }
+  .gpSheet p { margin: 8px 0 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #6f86a6; }
+  .gpSheet a { padding: 14px 0; font-size: 22px; font-weight: 500; letter-spacing: -0.01em; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.07); }
+  .gpSheet a.gpSheetSub { font-size: 17px; font-weight: 400; color: #cfd9e8; padding: 11px 0 11px 14px; }
+  .gpSheet a.gpSheetCta { margin-top: 24px; padding: 14px 0; text-align: center; font-size: 17px; font-weight: 600; color: #07172d; background: #f2a516; border-radius: 999px; border: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gpHeader, .gpPanel, .gpSheet, .gpCaret, .gpCta { transition: none; }
+}
+
+/* Full-screen heroes sit below the (in-flow) header, so they take the remaining height. */
+.newHero, .agriHero, .tradeHero, .mfgHero, .buildHero, .minHero { height: calc(100svh - 64px); min-height: 696px; }
+@media (max-width: 900px) { .newHero, .agriHero, .tradeHero, .mfgHero, .buildHero, .minHero { height: calc(100svh - 58px); } }
+
+/* Products flyout: two groups side by side, like a product menu */
+.gpPanelProducts { width: 640px; }
+.gpPanelCols { display: grid; grid-template-columns: 1fr 1.25fr; gap: 8px 28px; padding: 8px 10px 4px; }
+.gpGroupTitle { display: block; padding: 10px 6px; font-size: 15px; font-weight: 600; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.gpGroupTitle:hover { color: #f2a516; }
+.gpPanelGroup ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 2px; }
+.gpPanelGroup ul a { display: block; padding: 9px 12px; font-size: 14px; color: #cfd9e8; text-decoration: none; border-radius: 10px; transition: background 0.2s, color 0.2s; }
+.gpPanelGroup ul a:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }

@@ -1,0 +1,89 @@
+/* Technology page and the homepage teaser. */
+
+.tk { background: #fff; color: #0a1830; font-family: var(--font-sans), system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+.tkShell { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+.tkEyebrow { margin: 0 0 16px; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #f2a516; }
+
+.tkBtn, .tkBtnGhost { display: inline-block; padding: 14px 26px; font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 999px; transition: background 0.2s, transform 0.2s, border-color 0.2s; }
+.tkBtn { color: #07172d; background: #f2a516; border: 1px solid #f2a516; }
+.tkBtn:hover { background: #ffb92e; transform: translateY(-1px); }
+.tkBtnGhost { color: #fff; border: 1px solid rgba(255, 255, 255, 0.5); }
+.tkBtnGhost:hover { background: rgba(255, 255, 255, 0.12); border-color: #fff; }
+.tkActions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+
+/* Hero */
+.tkHero { position: relative; padding: clamp(72px, 11vw, 150px) 0 clamp(64px, 9vw, 120px); color: #fff; background: radial-gradient(ellipse 70% 80% at 85% 20%, rgba(242, 165, 22, 0.16) 0%, rgba(242, 165, 22, 0) 55%), radial-gradient(ellipse 80% 90% at 15% 100%, #12386b 0%, #07172d 70%); overflow: hidden; }
+.tkHero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse at 70% 40%, #000 0%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at 70% 40%, #000 0%, transparent 70%); }
+.tkHero .tkShell { position: relative; }
+.tkHero h1 { margin: 0; max-width: 860px; font-size: clamp(36px, 6vw, 76px); font-weight: 600; line-height: 1.04; letter-spacing: -0.04em; }
+.tkLead { margin: 24px 0 0; max-width: 620px; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.6; color: rgba(255, 255, 255, 0.82); }
+
+/* Sections */
+.tkSection { padding: clamp(64px, 9vw, 112px) 0; }
+.tkDark { background: #07172d; color: #fff; }
+.tkHead { max-width: 720px; margin-bottom: 44px; }
+.tkHead h2 { margin: 0 0 14px; font-size: clamp(30px, 4.2vw, 50px); font-weight: 600; line-height: 1.08; letter-spacing: -0.03em; color: #07172d; }
+.tkDark .tkHead h2 { color: #fff; }
+.tkHead p { margin: 0; font-size: 18px; line-height: 1.6; color: #55657b; }
+.tkDark .tkHead p { color: #a7b7cf; }
+
+/* Cards */
+.tkGrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px; }
+.tkGrid > li { grid-column: span 2; scroll-margin-top: 90px; }
+.tkGrid > li:nth-child(4), .tkGrid > li:nth-child(5) { grid-column: span 3; }
+.tkCard { display: flex; flex-direction: column; height: 100%; padding: 30px 30px 28px; background: #fff; border: 1px solid rgba(7, 23, 45, 0.07); border-radius: 26px; box-shadow: 0 1px 2px rgba(7, 23, 45, 0.04), 0 12px 32px rgba(7, 23, 45, 0.07); transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s; }
+.tkCard:hover { transform: translateY(-6px); box-shadow: 0 2px 4px rgba(7, 23, 45, 0.05), 0 28px 56px rgba(7, 23, 45, 0.15); }
+.tkCardTop { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
+.tkIcon { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; color: #07172d; background: #eef2f8; border-radius: 16px; }
+.tkStatus { padding: 5px 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; border-radius: 999px; }
+.tkStatus-in-development { color: #7a5a17; background: #f6ecd9; }
+.tkStatus-coming-soon { color: #234a85; background: #e1ebf8; }
+.tkStatus-available { color: #1d5a3c; background: #dff0e7; }
+.tkCard h3 { margin: 0 0 10px; font-size: 24px; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; color: #07172d; }
+.tkCardText { margin: 0 0 18px; font-size: 16px; line-height: 1.6; color: #55657b; }
+.tkPoints { list-style: none; margin: 0 0 24px; padding: 16px 0 0; border-top: 1px solid #edf1f6; display: grid; gap: 9px; }
+.tkPoints li { position: relative; padding-left: 22px; font-size: 15px; color: #28384f; }
+.tkPoints li::before { content: ""; position: absolute; left: 0; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: #f2a516; }
+.tkCardLink { margin-top: auto; font-size: 15px; font-weight: 600; color: #07172d; text-decoration: none; }
+.tkCardLink::after { content: " \2192"; }
+.tkCardLink:hover { color: #9a6c0a; }
+@media (max-width: 1000px) { .tkGrid { grid-template-columns: 1fr 1fr; } .tkGrid > li, .tkGrid > li:nth-child(4), .tkGrid > li:nth-child(5) { grid-column: span 1; } .tkGrid > li:last-child { grid-column: span 2; } }
+@media (max-width: 640px) { .tkGrid { grid-template-columns: 1fr; } .tkGrid > li, .tkGrid > li:last-child { grid-column: span 1; } .tkCard { padding: 26px 24px 24px; } }
+
+/* Stack */
+.tkSteps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.tkSteps li { padding: 30px 28px 34px; border: 1px solid rgba(255, 255, 255, 0.12); border-top: 3px solid #f2a516; border-radius: 16px; background: rgba(255, 255, 255, 0.04); }
+.tkSteps span { font-size: 13px; font-weight: 600; letter-spacing: 0.14em; color: #f2a516; }
+.tkSteps h3 { margin: 12px 0 10px; font-size: 24px; font-weight: 600; letter-spacing: -0.015em; }
+.tkSteps p { margin: 0; font-size: 16px; line-height: 1.6; color: #a7b7cf; }
+@media (max-width: 800px) { .tkSteps { grid-template-columns: 1fr; } }
+
+/* Call to action */
+.tkCta { padding: clamp(72px, 10vw, 128px) 0; text-align: center; color: #fff; background: radial-gradient(ellipse at 50% 0%, #12386b 0%, #07172d 62%); }
+.tkCta h2 { margin: 0 auto 16px; max-width: 760px; font-size: clamp(30px, 4.4vw, 52px); font-weight: 600; line-height: 1.08; letter-spacing: -0.03em; }
+.tkCta p { margin: 0 auto 32px; max-width: 580px; font-size: 18px; line-height: 1.6; color: #a7b7cf; }
+
+/* Homepage teaser */
+.ttSection { background: #07172d; color: #fff; padding: clamp(64px, 9vw, 112px) 0; }
+.ttGrid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.ttCopy h2 { margin: 0 0 16px; font-size: clamp(30px, 4.2vw, 50px); font-weight: 600; line-height: 1.08; letter-spacing: -0.03em; }
+.ttCopy p:not(.ttEyebrow) { margin: 0 0 28px; max-width: 520px; font-size: 18px; line-height: 1.65; color: #a7b7cf; }
+.ttEyebrow { margin: 0 0 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #f2a516; }
+.ttList { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ttList a { display: flex; align-items: center; gap: 16px; padding: 14px 18px; color: #fff; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; background: rgba(255, 255, 255, 0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+.ttList a:hover { background: rgba(255, 255, 255, 0.09); border-color: rgba(242, 165, 22, 0.6); transform: translateX(4px); }
+.ttList .tkIcon { width: 44px; height: 44px; border-radius: 14px; color: #f2a516; background: rgba(255, 255, 255, 0.07); flex: none; }
+.ttList b { display: block; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+.ttList span { display: block; margin-top: 2px; font-size: 14px; color: #9fb2cc; }
+.ttList small { margin-left: auto; font-size: 12px; font-weight: 600; color: #f2a516; white-space: nowrap; }
+@media (max-width: 860px) { .ttGrid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .ttList small { display: none; } }
+
+@media (prefers-reduced-motion: reduce) { .tkCard, .ttList a, .tkBtn { transition: none; } .tkCard:hover, .ttList a:hover { transform: none; } }
+
+/* Technology products page: compact hero with breadcrumb */
+.tkHeroCompact { padding: clamp(40px, 6vw, 72px) 0 clamp(48px, 7vw, 88px); }
+.tkCrumbs { display: flex; gap: 10px; margin-bottom: 36px; font-size: 13px; color: rgba(255, 255, 255, 0.7); flex-wrap: wrap; }
+.tkCrumbs a { color: rgba(255, 255, 255, 0.85); text-decoration: none; }
+.tkCrumbs a:hover { color: #fff; text-decoration: underline; }
+.tkCard h2 { margin: 0 0 10px; font-size: 24px; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; color: #07172d; }

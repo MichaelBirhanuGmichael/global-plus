@@ -1,0 +1,63 @@
+/* Truck and bus tires page: full-width hero that follows the chosen application, an overlapping filter bar, then the grid. */
+
+.tx { background: #fff; }
+.txShell { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+.txSrOnly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.txFallback { min-height: 520px; background: #07172d; }
+
+/* Hero */
+.txHero { position: relative; display: flex; align-items: flex-end; min-height: clamp(460px, 64vh, 620px); color: #fff; overflow: hidden; background: #07172d; }
+.txHeroImg { object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity 0.7s ease, transform 1.4s ease; }
+.txHeroImg.isOn { opacity: 1; transform: scale(1); }
+.txHeroShade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4, 14, 30, 0.78) 0%, rgba(4, 14, 30, 0.4) 46%, rgba(4, 14, 30, 0) 75%), linear-gradient(180deg, rgba(4, 14, 30, 0.35) 0%, rgba(4, 14, 30, 0) 32%, rgba(4, 14, 30, 0.45) 100%); }
+.txHeroCopy { position: relative; padding: 56px 0 112px; }
+.txCrumbs { display: flex; gap: 10px; margin-bottom: 40px; font-size: 13px; color: rgba(255, 255, 255, 0.7); flex-wrap: wrap; }
+.txCrumbs a { color: rgba(255, 255, 255, 0.85); text-decoration: none; }
+.txCrumbs a:hover { color: #fff; text-decoration: underline; }
+.txKicker { margin: 0 0 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #f2a516; }
+.txHeroCopy h1 { margin: 0; max-width: 820px; font-size: clamp(42px, 7vw, 88px); font-weight: 700; line-height: 1.02; letter-spacing: -0.04em; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35); }
+.txSub { margin: 20px 0 0; max-width: 560px; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.55; color: rgba(255, 255, 255, 0.88); animation: txFade 0.5s ease; }
+.txDealer { margin: 14px 0 0; font-size: 13px; color: rgba(255, 255, 255, 0.65); }
+@keyframes txFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Filter bar overlapping the hero */
+.txPanelWrap { position: relative; z-index: 2; margin-top: -56px; }
+.txPanel { display: flex; align-items: center; justify-content: space-between; gap: 18px 24px; flex-wrap: wrap; padding: 18px 22px; background: rgba(9, 24, 46, 0.96); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; box-shadow: 0 28px 60px rgba(4, 14, 30, 0.35); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+.txTabs { display: inline-flex; gap: 6px; padding: 5px; background: rgba(255, 255, 255, 0.07); border-radius: 999px; flex-wrap: wrap; }
+.txTabs button { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; font: inherit; font-size: 15px; font-weight: 500; color: #cfd9e8; background: transparent; border: 0; border-radius: 999px; cursor: pointer; transition: background 0.2s, color 0.2s; }
+.txTabs button small { font-size: 12px; opacity: 0.6; }
+.txTabs button:hover { color: #fff; }
+.txTabs button.isActive { background: #f2a516; color: #07172d; font-weight: 600; }
+.txTabs button.isActive small { opacity: 0.7; }
+.txSearch input { width: min(360px, 100%); padding: 13px 18px; font: inherit; font-size: 15px; color: #fff; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 999px; }
+.txSearch input::placeholder { color: #8da2c0; }
+.txSearch input:focus { outline: 2px solid #f2a516; outline-offset: 1px; background: rgba(255, 255, 255, 0.12); }
+
+/* Grid */
+.txRange { padding: 40px 0 24px; }
+.txCount { margin: 0 0 22px; font-size: 14px; color: #6b7a90; }
+.txGrid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.txEmpty { padding: 40px; text-align: center; border: 1px dashed #cfd9e6; border-radius: 16px; color: #55657b; }
+.txEmpty a { color: #07172d; font-weight: 600; }
+@media (max-width: 1020px) { .txGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .txGrid { grid-template-columns: 1fr; } }
+
+@media (max-width: 700px) {
+  .txHero { min-height: 480px; }
+  .txHeroCopy { padding: 36px 0 104px; }
+  .txCrumbs { margin-bottom: 24px; }
+  .txPanel { padding: 14px; border-radius: 20px; }
+  .txTabs { width: 100%; justify-content: space-between; }
+  .txTabs button { flex: 1; justify-content: center; padding: 10px 8px; font-size: 14px; }
+  .txTabs button small { display: none; }
+  .txSearch { width: 100%; }
+  .txSearch input { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) { .txHeroImg, .txSub { transition: none; animation: none; } }
+
+/* Category row (Products page) */
+.txCats { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding-top: 28px; }
+.txCats span { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #6b7a90; }
+.txCats a { padding: 8px 16px; font-size: 14px; font-weight: 500; color: #07172d; text-decoration: none; border: 1px solid #cdd8e6; border-radius: 999px; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+.txCats a:hover, .txCats a.isCurrent { background: #07172d; border-color: #07172d; color: #fff; }

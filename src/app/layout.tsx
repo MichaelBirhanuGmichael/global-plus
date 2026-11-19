@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import LiveChat from "@/components/live-chat";
 import "./globals.css";
 import "./logo-overrides.css";
@@ -8,14 +8,19 @@ import "./ecosystem.css";
 import "./coffee-journey.css";
 import "./division-slideshow.css";
 import "./location.css";
-import "./agribusiness.css";
-import "./manufacturing.css";
-import "./trading.css";
-import "./construction.css";
-import "./minerals.css";
 import "./contact.css";
-import "./business-nav.css";
+import "./careers.css";
 import "./live-chat.css";
+import "./products.css";
+import "./header.css";
+import "./home.css";
+import "./pdetail.css";
+import "./business.css";
+import "./footer.css";
+import "./tires.css";
+import "./tile.css";
+import "./news.css";
+import "./technology.css";
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],
@@ -25,9 +30,8 @@ const display = Cormorant_Garamond({
   display: "swap",
 });
 
-const sans = Outfit({
+const sans = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });

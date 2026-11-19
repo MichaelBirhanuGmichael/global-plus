@@ -1,0 +1,62 @@
+/* Site footer (all pages): brand and link columns, then the two offices as cards with maps. */
+
+.gpFoot { background: #06162b; color: #cfd9e8; font-family: var(--font-sans), system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.gpFoot * { box-sizing: border-box; }
+.gpFootShell { width: min(1180px, calc(100% - 48px)); margin-inline: auto; padding: clamp(52px, 7vw, 84px) 0 calc(28px + env(safe-area-inset-bottom)); }
+
+/* Top row */
+.gpFootTop { display: grid; grid-template-columns: 1.6fr 1.3fr 1fr 1fr; gap: 40px 36px; align-items: start; }
+
+.gpFootLogo { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; color: #fff; }
+.gpFootLogo img { height: 44px; width: auto; display: block; flex: none; }
+.gpFootLogo span { display: flex; flex-direction: column; gap: 5px; line-height: 1; }
+.gpFootLogo b { display: block; margin: 0; padding: 0; border: 0; font-size: 19px; font-weight: 700; letter-spacing: 0.06em; line-height: 1; color: #fff; }
+.gpFootLogo b i { font-style: normal; color: #f2a516; }
+.gpFootLogo small { display: block; margin: 0; padding: 0; border: 0; font-size: 9.5px; font-weight: 500; letter-spacing: 0.34em; line-height: 1; text-transform: uppercase; color: #9fb2cc; }
+.gpFootBrand p { margin: 20px 0 22px; max-width: 300px; font-size: 15px; line-height: 1.55; color: #9fb2cc; }
+
+.gpFootChannels { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; }
+.gpFootChannels a { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(255, 255, 255, 0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+.gpFootChannels a:hover { background: rgba(242, 165, 22, 0.16); border-color: #f2a516; transform: translateY(-2px); }
+.gpFootChannels svg { width: 18px; height: 18px; fill: #f2a516; }
+
+.gpFootCol h3 { margin: 0 0 18px; padding: 0; font-size: 12.5px; font-weight: 600; letter-spacing: 0.14em; line-height: 1.2; text-transform: uppercase; color: #fff; }
+.gpFootCol ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.gpFootCol a { font-size: 15px; line-height: 1.35; color: #9fb2cc; text-decoration: none; transition: color 0.2s; }
+.gpFootCol a:hover { color: #fff; }
+
+/* Offices */
+.gpFootOffices { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 52px; }
+.gpFootOffice { display: flex; flex-direction: column; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; background: rgba(255, 255, 255, 0.03); overflow: hidden; }
+.gpFootOfficeInfo { padding: 26px 28px 22px; }
+.gpFootOfficeInfo h3 { margin: 0 0 12px; padding: 0; font-size: 12.5px; font-weight: 600; letter-spacing: 0.14em; line-height: 1.2; text-transform: uppercase; color: #f2a516; }
+.gpFootOfficeInfo address { margin: 0; font-style: normal; font-size: 16px; line-height: 1.6; color: #dbe4f0; }
+.gpFootOfficeInfo address span { display: inline-block; margin-top: 4px; font-size: 13.5px; letter-spacing: 0.04em; color: #8da2c0; }
+.gpFootMapLink { display: inline-block; margin-top: 14px; font-size: 14.5px; font-weight: 600; color: #f2a516; text-decoration: none; }
+.gpFootMapLink::after { content: " \2197"; }
+.gpFootMapLink:hover { color: #ffc24a; }
+.gpFootMap { height: 240px; margin-top: auto; background: #0b1f3a; }
+.gpFootMap iframe { width: 100%; height: 100%; border: 0; display: block; filter: saturate(0.85) contrast(1.02); }
+
+/* Bottom bar */
+.gpFootBottom { display: flex; justify-content: space-between; gap: 12px 16px; flex-wrap: wrap; margin-top: 36px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.gpFootBottom small { font-size: 13px; line-height: 1.5; color: #6f86a6; }
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .gpFootTop { grid-template-columns: 1fr 1fr 1fr; }
+  .gpFootBrand { grid-column: 1 / -1; }
+  .gpFootBrand p { max-width: none; }
+}
+
+/* Phone: brand, Businesses full width, then Products and Company side by side, then the offices. */
+@media (max-width: 640px) {
+  .gpFootShell { width: calc(100% - 40px); }
+  .gpFootTop { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
+  .gpFootCol[aria-label="Businesses"] { grid-column: 1 / -1; }
+  .gpFootCol ul { gap: 11px; }
+  .gpFootOffices { grid-template-columns: 1fr; margin-top: 40px; }
+  .gpFootOfficeInfo { padding: 22px 20px 18px; }
+  .gpFootMap { height: 200px; }
+  .gpFootBottom { flex-direction: column; }
+}

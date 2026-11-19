@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { Suspense } from "react";
 import ContactForm from "@/components/contact-form";
 import SiteFooter from "@/components/site-footer";
+import SiteHeader from "@/components/site-header";
 
 const title = "Contact | Global Plus Business Group";
 const description = "Contact Global Plus Business Group in Addis Ababa by phone, WhatsApp, Telegram or email.";
@@ -19,15 +18,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="contactPage">
-      <header className="contactNav">
-        <Link href="/" aria-label="Global Plus home">
-          <Image src="/global-plus-logo-dark.png" alt="Global Plus Business Group" width={210} height={140} />
-        </Link>
-        <nav>
-          <Link href="/#businesses">Businesses</Link>
-          <Link href="/">Group home</Link>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className="contactBody" id="inquiry">
         <div className="contactIntro">

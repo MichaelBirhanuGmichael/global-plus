@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { getCountries, getCountryCallingCode, type Country } from "react-phone-number-input";
 import en from "react-phone-number-input/locale/en";
@@ -12,6 +12,7 @@ const divisions = [
   "Construction & Infrastructure",
   "Export & Agribusiness",
   "Minerals & Resources",
+  "Technology",
 ];
 
 type CountryOption = {
@@ -22,7 +23,12 @@ type CountryOption = {
 
 export default function ContactForm() {
   const params = useSearchParams();
-  const [division, setDivision] = useState("General inquiry");
+  const [division, setDivision] = useState(() => {
+    if (params.get("product")) return "Trading & Distribution";
+    if (params.get("interest")) return "Technology";
+    const value = params.get("division");
+    return value && divisions.includes(value) ? value : "General inquiry";
+  });
   const [countryIso, setCountryIso] = useState<Country>("ET");
   const [dialCode, setDialCode] = useState("+251");
 
@@ -36,10 +42,15 @@ export default function ContactForm() {
       .sort((a, b) => a.name.localeCompare(b.name));
   }, []);
 
-  useEffect(() => {
-    const value = params.get("division");
-    if (value && divisions.includes(value)) setDivision(value);
-  }, [params]);
+  const [message, setMessage] = useState(() => {
+    const interest = params.get("interest");
+    if (interest) return `I would like to know more about ${interest}.\n\nCompany:\nNumber of vehicles or users:\nWhat you need:\n`;
+    const product = params.get("product");
+    if (!product) return "";
+    return product.toLowerCase().includes("catalogue")
+      ? "Please send me the full EFFIPLUS TBR tire catalogue.\n\nCompany / fleet:\n"
+      : `I would like a quote for ${product}.\n\nTire size:\nQuantity:\nVehicle type and road type:\nDelivery location:\n`;
+  });
 
   function onCountryChange(iso: Country) {
     setCountryIso(iso);
@@ -129,6 +140,8 @@ export default function ContactForm() {
           name="message"
           required
           rows={6}
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
           placeholder="Product, project, volume, destination, timeline or other requirements"
         />
       </label>
