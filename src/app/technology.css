@@ -87,3 +87,9 @@
 .tkCrumbs a { color: rgba(255, 255, 255, 0.85); text-decoration: none; }
 .tkCrumbs a:hover { color: #fff; text-decoration: underline; }
 .tkCard h2 { margin: 0 0 10px; font-size: 24px; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; color: #07172d; }
+
+.tkTint { background: #f4f7fb; }
+.tkEyebrowDark { margin: 0 0 14px; font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #9a6c0a; }
+.tkGrid2 { grid-template-columns: 1fr 1fr; }
+.tkGrid2 > li, .tkGrid2 > li:nth-child(4), .tkGrid2 > li:nth-child(5) { grid-column: span 1; }
+@media (max-width: 800px) { .tkGrid2 { grid-template-columns: 1fr; } }

@@ -238,6 +238,18 @@ export default function Home() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/businesses/technology#build">
+                <span className="tkIcon">
+                  <TechIcon name="web" />
+                </span>
+                <div>
+                  <b>Web and mobile app development</b>
+                  <span>Custom software, built by our own engineers.</span>
+                </div>
+                <small>Available</small>
+              </Link>
+            </li>
           </ul>
         </div>
       </section>

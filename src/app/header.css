@@ -72,7 +72,7 @@
   width: 560px;
   transform: translate(-50%, 8px);
   padding: 12px;
-  background: rgba(8, 26, 50, 0.96);
+  background: #081a32;
   -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -156,3 +156,8 @@
 .gpPanelGroup ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 2px; }
 .gpPanelGroup ul a { display: block; padding: 9px 12px; font-size: 14px; color: #cfd9e8; text-decoration: none; border-radius: 10px; transition: background 0.2s, color 0.2s; }
 .gpPanelGroup ul a:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.gpPanelProducts { padding: 16px 16px 8px; }
+.gpGroupSub { display: block; margin-top: 14px; padding: 10px 6px; font-size: 14px; font-weight: 600; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.gpGroupSub:hover { color: #f2a516; }
+.gpGroupNote { margin: 14px 6px 4px; font-size: 12.5px; line-height: 1.45; color: #7f95b3; }
+.gpPanelProducts .gpPanelAll { margin: 12px 0 8px; padding: 14px 8px 8px; }

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { technology } from "@/data/technology";
+import { services, technology } from "@/data/technology";
 
 /* The one header for every page: slim, translucent, with Businesses and Products flyouts and a full-screen menu on phones. */
 
@@ -21,16 +21,24 @@ const productGroups = [
   {
     title: "Truck and bus tires",
     href: "/products/tires",
+    note: "Exclusive official EFFIPLUS dealer in Ethiopia",
     items: [
       ["On road", "/products/tires"],
       ["Mix road", "/products/tires?road=mix"],
       ["Off road", "/products/tires?road=off"],
     ],
+    sub: null,
   },
   {
     title: "Technology",
     href: "/products/technology",
+    note: null,
     items: technology.map((t) => [t.title, `/products/technology#${t.slug}`]),
+    sub: {
+      title: "Software development",
+      href: "/products/technology#development",
+      items: services.map((t) => [t.title, `/products/technology#${t.slug}`]),
+    },
   },
 ] as const;
 
@@ -148,6 +156,23 @@ export default function SiteHeader() {
                         </li>
                       ))}
                     </ul>
+                    {g.sub ? (
+                      <>
+                        <Link href={g.sub.href} className="gpGroupSub" role="menuitem" onClick={() => setFly(null)}>
+                          {g.sub.title}
+                        </Link>
+                        <ul>
+                          {g.sub.items.map(([label, href]) => (
+                            <li key={href}>
+                              <Link href={href} role="menuitem" onClick={() => setFly(null)}>
+                                {label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    ) : null}
+                    {g.note ? <p className="gpGroupNote">{g.note}</p> : null}
                   </div>
                 ))}
               </div>

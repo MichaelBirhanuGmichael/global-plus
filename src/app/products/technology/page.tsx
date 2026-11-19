@@ -3,7 +3,7 @@ import Link from "next/link";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { TechIcon } from "@/components/tech-icon";
-import { technology } from "@/data/technology";
+import { services, technology } from "@/data/technology";
 
 const title = "Technology products | Global Plus Business Group";
 const description =
@@ -66,6 +66,41 @@ export default function TechnologyProductsPage() {
                   </ul>
                   <Link className="tkCardLink" href={`/contact?division=Technology&interest=${encodeURIComponent(t.interest)}`}>
                     Ask about this
+                  </Link>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Software development */}
+      <section className="tkSection tkTint" id="development">
+        <div className="tkShell">
+          <header className="tkHead">
+            <p className="tkEyebrowDark">Software development</p>
+            <h2>We also build software for you.</h2>
+            <p>Web and mobile applications designed and built by our own engineers, for companies that need something made around the way they work.</p>
+          </header>
+          <ul className="tkGrid tkGrid2">
+            {services.map((t) => (
+              <li key={t.slug} id={t.slug}>
+                <article className="tkCard">
+                  <div className="tkCardTop">
+                    <span className="tkIcon">
+                      <TechIcon name={t.icon} />
+                    </span>
+                    <span className="tkStatus tkStatus-available">Available</span>
+                  </div>
+                  <h2>{t.title}</h2>
+                  <p className="tkCardText">{t.text}</p>
+                  <ul className="tkPoints">
+                    {t.points.map((pt) => (
+                      <li key={pt}>{pt}</li>
+                    ))}
+                  </ul>
+                  <Link className="tkCardLink" href={`/contact?division=Technology&interest=${encodeURIComponent(t.interest)}`}>
+                    Start a project
                   </Link>
                 </article>
               </li>
