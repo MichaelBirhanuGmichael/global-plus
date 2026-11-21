@@ -81,10 +81,11 @@ const featured = ["am4s-q689", "am4s-m628", "moby-r802", "folo-r199-plus"]
 
 const heroSlides: HeroSlide[] = [
   { src: "/products/tires/hero-on.jpg", alt: "A truck driving on a highway at sunset", label: "Trading · EFFIPLUS truck and bus tires", href: "/products/tires", position: "62% 72%" },
-  { src: "/agri-coffee-roast-hd.png", alt: "Roasted coffee beans in a burlap sack", label: "Export & Agribusiness · Ethiopian coffee", href: "/businesses/agribusiness", position: "40% 45%" },
-  { src: "/stock-construction.jpg", alt: "Workers on a construction site laying reinforcement", label: "Construction & Infrastructure", href: "/businesses/construction", position: "50% 50%" },
-  { src: "/minerals-hero.webp", alt: "A malachite and copper mineral specimen", label: "Minerals & Resources", href: "/businesses/minerals", position: "50% 45%" },
-  { src: "/ethiopia-manufacturing-welding.jpg", alt: "Welders working on steel in a factory", label: "Manufacturing & Industrial", href: "/businesses/manufacturing", position: "50% 40%" },
+  // More photos, switched off for now. Remove the "//" at the start of a line to bring it back into the rotation:
+  // { src: "/agri-coffee-roast-hd.png", alt: "Roasted coffee beans in a burlap sack", label: "Export & Agribusiness · Ethiopian coffee", href: "/businesses/agribusiness", position: "40% 45%" },
+  // { src: "/stock-construction.jpg", alt: "Workers on a construction site laying reinforcement", label: "Construction & Infrastructure", href: "/businesses/construction", position: "50% 50%" },
+  // { src: "/minerals-hero.webp", alt: "A malachite and copper mineral specimen", label: "Minerals & Resources", href: "/businesses/minerals", position: "50% 45%" },
+  // { src: "/ethiopia-manufacturing-welding.jpg", alt: "Welders working on steel in a factory", label: "Manufacturing & Industrial", href: "/businesses/manufacturing", position: "50% 40%" },
 ];
 
 export default function Home() {
@@ -111,27 +112,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. Facts */}
-      <section className="hmFacts" aria-label="Global Plus at a glance">
-        <dl className="hmShell">
-          <div>
-            <dt>5</dt>
-            <dd>Business divisions</dd>
-          </div>
-          <div>
-            <dt>Addis Ababa</dt>
-            <dd>Head office, Bole</dd>
-          </div>
-          <div>
-            <dt>Djibouti</dt>
-            <dd>Sea access for import and export</dd>
-          </div>
-          <div>
-            <dt>EFFIPLUS</dt>
-            <dd>Exclusive tire dealer in Ethiopia</dd>
-          </div>
-        </dl>
+      {/* 2. Facts: floating cards that overlap the hero */}
+      {/* Switched off for now. To bring the three cards back, delete this line and the closing line below.
+      <section className="hmStats" aria-label="Global Plus at a glance">
+        <ul className="hmShell">
+          <li>
+            <Link href="#businesses">
+              <span className="hmStatIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3.5" y="3.5" width="7" height="7" rx="1.6" />
+                  <rect x="13.5" y="3.5" width="7" height="7" rx="1.6" />
+                  <rect x="3.5" y="13.5" width="7" height="7" rx="1.6" />
+                  <rect x="13.5" y="13.5" width="7" height="7" rx="1.6" />
+                </svg>
+              </span>
+              <span className="hmStatBody">
+                <b>6</b>
+                <span>Business divisions. Explore them</span>
+              </span>
+              <span className="hmStatGo" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact">
+              <span className="hmStatIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 21s-6.5-5.4-6.5-10.5a6.5 6.5 0 0 1 13 0C18.5 15.6 12 21 12 21Z" />
+                  <circle cx="12" cy="10.5" r="2.3" />
+                </svg>
+              </span>
+              <span className="hmStatBody">
+                <b>Addis Ababa</b>
+                <span>Head office, Bole. Visit or contact us</span>
+              </span>
+              <span className="hmStatGo" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link href="/products/tires">
+              <span className="hmStatIcon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="8.5" />
+                  <circle cx="12" cy="12" r="3.2" />
+                  <path d="M12 3.5v5.3M12 15.2v5.3M3.5 12h5.3M15.2 12h5.3" />
+                </svg>
+              </span>
+              <span className="hmStatBody">
+                <b>EFFIPLUS</b>
+                <span>Exclusive tire dealer in Ethiopia. See the range</span>
+              </span>
+              <span className="hmStatGo" aria-hidden="true">
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </span>
+            </Link>
+          </li>
+        </ul>
       </section>
+      */}
 
       {/* 3. Businesses */}
       <section className="hmSection" id="businesses">
@@ -218,11 +265,12 @@ export default function Home() {
           <div className="ttCopy">
             <p className="ttEyebrow">Technology</p>
             <h2>Technology for moving and running business.</h2>
-            <p>Fleet management, digital ticketing, GPS devices and business systems, built for transport and business in Ethiopia.</p>
+            <p>Fleet management, GPS devices and business systems, built for transport and business in Ethiopia.</p>
             <Link className="hmBtn" href="/businesses/technology">
               Explore technology
             </Link>
           </div>
+          {/* Switched off for now. To bring the six technology cards back, delete this line and the closing line below.
           <ul className="ttList">
             {technology.map((t) => (
               <li key={t.slug}>
@@ -251,6 +299,7 @@ export default function Home() {
               </Link>
             </li>
           </ul>
+          */}
         </div>
       </section>
 

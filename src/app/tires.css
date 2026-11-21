@@ -6,7 +6,7 @@
 .txFallback { min-height: 520px; background: #07172d; }
 
 /* Hero */
-.txHero { position: relative; display: flex; align-items: flex-end; min-height: clamp(460px, 64vh, 620px); color: #fff; overflow: hidden; background: #07172d; }
+.txHero { position: relative; display: flex; align-items: flex-end; min-height: max(520px, calc(100svh - var(--gpH))); color: #fff; overflow: hidden; background: #07172d; }
 .txHeroImg { object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity 0.7s ease, transform 1.4s ease; }
 .txHeroImg.isOn { opacity: 1; transform: scale(1); }
 .txHeroShade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4, 14, 30, 0.78) 0%, rgba(4, 14, 30, 0.4) 46%, rgba(4, 14, 30, 0) 75%), linear-gradient(180deg, rgba(4, 14, 30, 0.35) 0%, rgba(4, 14, 30, 0) 32%, rgba(4, 14, 30, 0.45) 100%); }
@@ -43,7 +43,7 @@
 @media (max-width: 560px) { .txGrid { grid-template-columns: 1fr; } }
 
 @media (max-width: 700px) {
-  .txHero { min-height: 480px; }
+  .txHero { min-height: max(520px, calc(100svh - var(--gpH))); }
   .txHeroCopy { padding: 36px 0 104px; }
   .txCrumbs { margin-bottom: 24px; }
   .txPanel { padding: 14px; border-radius: 20px; }

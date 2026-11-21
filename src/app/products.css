@@ -28,7 +28,7 @@
 .prButtonGhost:hover { background: #07172d; color: #fff; }
 
 .prFacts { background: #07172d; color: #fff; }
-.prFacts dl { margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); }
+.prFacts dl { margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
 .prFacts dl > div { padding: 22px 20px; border-left: 1px solid #ffffff1f; }
 .prFacts dl > div:first-child { border-left: 0; padding-left: 0; }
 .prFacts dt { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #9db0ca; margin-bottom: 4px; }

@@ -103,8 +103,13 @@ export default function ApplyForm({ slug, title }: Props) {
 
   if (phase === "received" || phase === "duplicate") {
     return (
-      <div className="applyDone" role="status">
-        <p className="contactEyebrow">{phase === "received" ? "Application received" : "Already applied"}</p>
+      <div className="apDone" role="status">
+        <span className="apTick" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m5 12.5 4.5 4.5L19 7.5" />
+          </svg>
+        </span>
+        <p className="apDoneTag">{phase === "received" ? "Application received" : "Already applied"}</p>
         <h2>{phase === "received" ? "Thank you." : "We already have your application."}</h2>
         <p>
           {phase === "received"
@@ -116,43 +121,40 @@ export default function ApplyForm({ slug, title }: Props) {
   }
 
   return (
-    <form className="inquiryForm applyForm" onSubmit={submit} noValidate>
+    <form className="ap" onSubmit={submit} noValidate>
       <h2>Apply for this position</h2>
-      <div className="formGrid">
-        <label>
-          Full name
+      <div className="apGrid">
+        <label className="apField">
+          <span>Full name</span>
           <input name="full_name" required placeholder="Your full name" autoComplete="name" maxLength={140} />
         </label>
-        <label>
-          Email address
+        <label className="apField">
+          <span>Email address</span>
           <input name="email" type="email" required placeholder="you@example.com" autoComplete="email" maxLength={140} />
         </label>
-        <label className="phoneField">
-          Mobile number
-          <div className="phoneFieldRow">
-            <span className="phoneCode" aria-hidden="true">
-              +251
-            </span>
+        <label className="apField">
+          <span>Mobile number</span>
+          <div className="apPhone">
+            <em aria-hidden="true">+251</em>
             <input name="phone" type="tel" inputMode="tel" required placeholder="91 123 4567" autoComplete="tel-national" />
           </div>
         </label>
-        <label>
-          How soon could you start? <em className="optional">optional</em>
+        <label className="apField">
+          <span>
+            How soon could you start? <i>optional</i>
+          </span>
           <input name="notice_period" placeholder="For example, 30 days" maxLength={60} />
         </label>
-        <label>
-          Expected salary, ETB per month <em className="optional">optional</em>
-          <input
-            type="text"
-            inputMode="numeric"
-            placeholder="For example, 25,000"
-            value={salary}
-            onChange={(event) => setSalary(withCommas(event.target.value))}
-            autoComplete="off"
-          />
+        <label className="apField">
+          <span>
+            Expected salary, ETB per month <i>optional</i>
+          </span>
+          <input type="text" inputMode="numeric" placeholder="For example, 25,000" value={salary} onChange={(event) => setSalary(withCommas(event.target.value))} autoComplete="off" />
         </label>
-        <label>
-          How did you hear about this position? <em className="optional">optional</em>
+        <label className="apField">
+          <span>
+            How did you hear about this position? <i>optional</i>
+          </span>
           <select name="how_heard" defaultValue="">
             {HOW_HEARD.map((item) => (
               <option key={item || "none"} value={item}>
@@ -162,44 +164,46 @@ export default function ApplyForm({ slug, title }: Props) {
           </select>
         </label>
       </div>
-      <label>
-        Short note <em className="optional">optional</em>
+      <label className="apField apWide">
+        <span>
+          Short note <i>optional</i>
+        </span>
         <textarea name="cover_note" rows={4} maxLength={2000} placeholder="Tell us briefly why you are a good fit" />
       </label>
 
-      <div className="fileField">
-        <span className="fileTitle">Your CV</span>
-        <input ref={fileInput} className="srOnly" type="file" accept=".pdf,.doc,.docx,application/pdf" onChange={pickFile} tabIndex={-1} aria-hidden="true" />
-        <div className="fileRow">
-          <button type="button" className="fileButton" onClick={() => fileInput.current?.click()}>
+      <div className="apFile">
+        <span className="apFileTitle">Your CV</span>
+        <input ref={fileInput} className="apSr" type="file" accept=".pdf,.doc,.docx,application/pdf" onChange={pickFile} tabIndex={-1} aria-hidden="true" />
+        <div className="apFileRow">
+          <button type="button" className="apFileBtn" onClick={() => fileInput.current?.click()}>
             {cv ? "Change file" : "Choose file"}
           </button>
-          <span className={cv ? "fileName has" : "fileName"}>{cv ? `${cv.name} · ${sizeText(cv.size)}` : "PDF or Word, up to 5 MB"}</span>
+          <span className={cv ? "apFileName has" : "apFileName"}>{cv ? `${cv.name} · ${sizeText(cv.size)}` : "PDF or Word, up to 5 MB"}</span>
           {cv ? (
-            <button type="button" className="fileClear" onClick={clearFile}>
+            <button type="button" className="apFileClear" onClick={clearFile}>
               Remove
             </button>
           ) : null}
         </div>
       </div>
 
-      <label className="honey" aria-hidden="true">
+      <label className="apHoney" aria-hidden="true">
         Leave this empty
         <input name="website" tabIndex={-1} autoComplete="off" />
       </label>
-      <label className="consent">
+      <label className="apConsent">
         <input type="checkbox" name="consent" />
         <span>I agree that Global Plus Business Group keeps my details and CV for hiring purposes.</span>
       </label>
       {error ? (
-        <p className="applyError" role="alert">
+        <p className="apError" role="alert">
           {error}
         </p>
       ) : null}
-      <button type="submit" className="sendButton" disabled={phase === "sending"}>
-        {phase === "sending" ? "Sending…" : "Send application"} <span>↗</span>
+      <button type="submit" className="apSend" disabled={phase === "sending"}>
+        {phase === "sending" ? "Sending…" : "Send application"}
       </button>
-      <p>We use your details only to consider your application.</p>
+      <p className="apNote">We use your details only to consider your application.</p>
     </form>
   );
 }

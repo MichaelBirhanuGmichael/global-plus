@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import LiveChat from "@/components/live-chat";
+import { EMAIL } from "@/data/site";
 import "./globals.css";
 import "./logo-overrides.css";
 import "./experience.css";
@@ -21,6 +22,9 @@ import "./tires.css";
 import "./tile.css";
 import "./news.css";
 import "./technology.css";
+import "./contact-page.css";
+import "./careers-page.css";
+import "./tech-catalog.css";
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],
@@ -110,7 +114,7 @@ const organizationJsonLd = {
   logo: `${siteUrl}/global-plus-logo.png`,
   image: `${siteUrl}/global-plus-coffee-farm-hero.png`,
   description: siteDescription,
-  email: "Info.globalplus1214@gmail.com",
+  email: EMAIL,
   telephone: "+251-11-666-2914",
   address: {
     "@type": "PostalAddress",
@@ -123,7 +127,7 @@ const organizationJsonLd = {
       "@type": "ContactPoint",
       contactType: "customer service",
       telephone: "+251-11-666-2914",
-      email: "Info.globalplus1214@gmail.com",
+      email: EMAIL,
       areaServed: "ET",
       availableLanguage: ["en", "am"],
     },

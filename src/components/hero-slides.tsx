@@ -54,6 +54,7 @@ export default function HeroSlides({ slides }: { slides: HeroSlide[] }) {
         <Link href={current.href} className="hsCaption" key={current.src}>
           <span>{current.label}</span>
         </Link>
+        {count > 1 ? (
         <div className="hsDots" role="tablist" aria-label="Hero photos">
           {slides.map((s, i) => (
             <button key={s.src} type="button" role="tab" aria-selected={i === index} aria-label={`Show ${s.label}`} className={i === index ? "isActive" : undefined} onClick={() => setIndex(i)}>
@@ -61,6 +62,7 @@ export default function HeroSlides({ slides }: { slides: HeroSlide[] }) {
             </button>
           ))}
         </div>
+        ) : null}
       </div>
       <p className="hsSr" aria-live="polite">
         {current.alt}

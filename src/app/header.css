@@ -1,5 +1,9 @@
 /* The shared site header (all pages). Slim, translucent navy with blur; flyout for Businesses; full-screen menu on phones. */
 
+/* The header is 64px plus its 1px border (58px + 1px on phones). The first section of each page takes exactly the rest of the screen, so the next section never peeks in. */
+:root { --gpH: 65px; }
+@media (max-width: 900px) { :root { --gpH: 59px; } }
+
 .gpHeader {
   position: sticky;
   top: 0;

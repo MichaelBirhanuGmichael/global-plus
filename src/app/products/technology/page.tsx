@@ -7,7 +7,7 @@ import { services, technology } from "@/data/technology";
 
 const title = "Technology products | Global Plus Business Group";
 const description =
-  "Fleet management, a platform connecting truck owners with business owners, digital ticketing, GPS trackers and dash cams, and ERP and business systems from Global Plus Business Group.";
+  "Fleet management, GPS trackers and dash cams, and ERP and business systems from Global Plus Business Group.";
 
 export const metadata: Metadata = {
   title,
@@ -17,54 +17,77 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description },
 };
 
+/* The kinds of device we are preparing for the GPS line. Plain descriptions: no brands, no prices. */
+const deviceKinds = [
+  { name: "Wired vehicle trackers", use: "Trucks, buses and delivery vans", note: "Engine cut-off, alarms, ignition detection" },
+  { name: "Fuel level sensors", use: "Trucks and buses", note: "Track fuel use and spot losses" },
+  { name: "Plug-in trackers", use: "Cars and light vehicles", note: "Fit in minutes, no wiring" },
+  { name: "Battery and magnetic trackers", use: "Trailers, containers, motorbikes, assets", note: "Long standby, hidden placement" },
+  { name: "Dash cams", use: "Buses and trucks", note: "Driver-safety alerts and recording" },
+];
+
+const jump = [
+  ...technology.map((t) => ({ href: `#${t.slug}`, label: t.title })),
+  { href: "#development", label: "Software development" },
+];
+
 export default function TechnologyProductsPage() {
   return (
-    <main className="tk">
+    <main className="tq">
       <SiteHeader />
 
       {/* Hero */}
-      <section className="tkHero tkHeroCompact">
-        <div className="tkShell">
-          <nav className="tkCrumbs" aria-label="Breadcrumb">
-            <Link href="/products">Products</Link>
-            <span>/</span>
-            <span>Technology</span>
-          </nav>
-          <p className="tkEyebrow">Technology products</p>
-          <h1>Software and devices for transport and business.</h1>
-          <p className="tkLead">Five lines from Global Plus Technology: some are available today and some are being built. Each shows its status, and we are looking for the first customers to shape them.</p>
-          <div className="tkActions">
-            <Link className="tkBtn" href="/contact?division=Technology">
-              Become a pilot customer
-            </Link>
-            <Link className="tkBtnGhost" href="/businesses/technology">
-              About Global Plus Technology
-            </Link>
+      <section className="tqHero">
+        <div className="tqShell tqHeroGrid">
+          <div className="tqHeroCopy">
+            <nav className="tqCrumbs" aria-label="Breadcrumb">
+              <Link href="/products">Products</Link>
+              <span>/</span>
+              <span>Technology</span>
+            </nav>
+            <p className="tqEyebrow">Technology catalog</p>
+            <h1>Software and devices for transport and business.</h1>
+            <p className="tqLead">One group building the platform, the devices and the business systems that move goods and run companies in Ethiopia.</p>
+            <div className="tqActions">
+              <Link className="tqBtn" href="/contact?division=Technology">
+                Talk to our team
+              </Link>
+              <a className="tqBtnGhost" href="#catalog">
+                Browse the catalog
+              </a>
+            </div>
           </div>
         </div>
+        <nav className="tqJump tqShell" aria-label="Catalog sections" id="catalog">
+          {jump.map((j) => (
+            <a key={j.href} href={j.href}>
+              {j.label}
+            </a>
+          ))}
+        </nav>
       </section>
 
-      {/* The five lines */}
-      <section className="tkSection" id="lines">
-        <div className="tkShell">
-          <ul className="tkGrid">
+      {/* The product lines: one simple card each */}
+      <section className="tqLines">
+        <div className="tqShell">
+          <ul className="tqCards">
             {technology.map((t) => (
               <li key={t.slug} id={t.slug}>
-                <article className="tkCard">
-                  <div className="tkCardTop">
-                    <span className="tkIcon">
+                <article className="tqCard">
+                  <div className="tqCardTop">
+                    <span className="tqIcon">
                       <TechIcon name={t.icon} />
                     </span>
-                    <span className={`tkStatus tkStatus-${t.status.replace(" ", "-").toLowerCase()}`}>{t.status}</span>
                   </div>
                   <h2>{t.title}</h2>
-                  <p className="tkCardText">{t.text}</p>
-                  <ul className="tkPoints">
+                  <p className="tqShort">{t.short}</p>
+                  <p className="tqText">{t.text}</p>
+                  <ul className="tqChecks">
                     {t.points.map((pt) => (
                       <li key={pt}>{pt}</li>
                     ))}
                   </ul>
-                  <Link className="tkCardLink" href={`/contact?division=Technology&interest=${encodeURIComponent(t.interest)}`}>
+                  <Link className="tqLink" href={`/contact?division=Technology&interest=${encodeURIComponent(t.interest)}`}>
                     Ask about this
                   </Link>
                 </article>
@@ -74,34 +97,53 @@ export default function TechnologyProductsPage() {
         </div>
       </section>
 
+      {/* Devices */}
+      <section className="tqKindsSec" id="devices">
+        <div className="tqShell">
+          <header className="tqHead">
+            <p className="tqEyebrow tqDark">Devices</p>
+            <h2>The devices we are preparing.</h2>
+            <p>The hardware that feeds the fleet platform, for every kind of vehicle.</p>
+          </header>
+          <ul className="tqKinds">
+            {deviceKinds.map((d) => (
+              <li key={d.name}>
+                <b>{d.name}</b>
+                <span>{d.use}</span>
+                <small>{d.note}</small>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* Software development */}
-      <section className="tkSection tkTint" id="development">
-        <div className="tkShell">
-          <header className="tkHead">
-            <p className="tkEyebrowDark">Software development</p>
+      <section className="tqDev" id="development">
+        <div className="tqShell">
+          <header className="tqDevHead">
+            <p className="tqEyebrow">Software development</p>
             <h2>We also build software for you.</h2>
             <p>Web and mobile applications designed and built by our own engineers, for companies that need something made around the way they work.</p>
           </header>
-          <ul className="tkGrid tkGrid2">
-            {services.map((t) => (
-              <li key={t.slug} id={t.slug}>
-                <article className="tkCard">
-                  <div className="tkCardTop">
-                    <span className="tkIcon">
-                      <TechIcon name={t.icon} />
-                    </span>
-                    <span className="tkStatus tkStatus-available">Available</span>
+          <ul className="tqDevGrid">
+            {services.map((s) => (
+              <li key={s.slug} id={s.slug}>
+                <article className="tqDevCard">
+                  <span className="tqIcon">
+                    <TechIcon name={s.icon} />
+                  </span>
+                  <div className="tqDevBody">
+                    <h3>{s.title}</h3>
+                    <p>{s.text}</p>
+                    <ul className="tqChecks">
+                      {s.points.map((pt) => (
+                        <li key={pt}>{pt}</li>
+                      ))}
+                    </ul>
+                    <Link className="tqBtn" href={`/contact?division=Technology&interest=${encodeURIComponent(s.interest)}`}>
+                      Start a project
+                    </Link>
                   </div>
-                  <h2>{t.title}</h2>
-                  <p className="tkCardText">{t.text}</p>
-                  <ul className="tkPoints">
-                    {t.points.map((pt) => (
-                      <li key={pt}>{pt}</li>
-                    ))}
-                  </ul>
-                  <Link className="tkCardLink" href={`/contact?division=Technology&interest=${encodeURIComponent(t.interest)}`}>
-                    Start a project
-                  </Link>
                 </article>
               </li>
             ))}
@@ -110,12 +152,12 @@ export default function TechnologyProductsPage() {
       </section>
 
       {/* Call to action */}
-      <section className="tkCta">
-        <div className="tkShell">
-          <h2>Help us build it, and use it first.</h2>
-          <p>Tell us about your fleet, your routes or your business. Early customers get a say in what we build and priority access when it launches.</p>
-          <Link className="tkBtn" href="/contact?division=Technology">
-            Become a pilot customer
+      <section className="tqCta">
+        <div className="tqShell">
+          <h2>Let us talk about what you need.</h2>
+          <p>Tell us about your fleet, your routes or your business, and we will show you what fits.</p>
+          <Link className="tqBtn" href="/contact?division=Technology">
+            Talk to our team
           </Link>
         </div>
       </section>

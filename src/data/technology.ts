@@ -15,9 +15,11 @@ export type TechProduct = {
   /** Pre-fills the contact form ("I would like to know more about ..."). */
   interest: string;
   icon: "fleet" | "connect" | "ticket" | "gps" | "erp";
+  /** true = kept in the file but not shown anywhere on the website. Remove the line (or set false) to show it again. */
+  hidden?: boolean;
 };
 
-export const technology: TechProduct[] = [
+const allTechnology: TechProduct[] = [
   {
     slug: "fleet-management",
     title: "Fleet management platform",
@@ -37,6 +39,7 @@ export const technology: TechProduct[] = [
     status: "In development",
     interest: "connecting truck owners with business owners",
     icon: "connect",
+    hidden: true,
   },
   {
     slug: "digital-ticketing",
@@ -47,6 +50,7 @@ export const technology: TechProduct[] = [
     status: "In development",
     interest: "digital ticketing",
     icon: "ticket",
+    hidden: true,
   },
   {
     slug: "gps-trackers-and-dash-cams",
@@ -69,6 +73,9 @@ export const technology: TechProduct[] = [
     icon: "erp",
   },
 ];
+
+/** The lines shown on the website: everything except the ones marked hidden. */
+export const technology: TechProduct[] = allTechnology.filter((t) => !t.hidden);
 
 /* Software development services (custom work for customers), shown next to the product lines. */
 export type TechService = {

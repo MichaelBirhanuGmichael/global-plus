@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { EMAIL } from "@/data/site";
 
 const contactChannels = [
   {
@@ -26,9 +27,9 @@ const contactChannels = [
   {
     id: "email",
     label: "Email",
-    href: "mailto:Info.globalplus1214@gmail.com",
+    href: `mailto:${EMAIL}`,
     external: false,
-    title: "Email · Info.globalplus1214@gmail.com",
+    title: `Email · ${EMAIL}`,
   },
 ];
 

@@ -18,7 +18,7 @@
 .bzLink:hover { color: #9a6c0a; }
 
 /* Hero */
-.bzHero { position: relative; display: flex; align-items: flex-end; min-height: min(80svh, 720px); color: #fff; overflow: hidden; background: #07172d; }
+.bzHero { position: relative; display: flex; align-items: flex-end; min-height: max(560px, calc(100svh - var(--gpH))); color: #fff; overflow: hidden; background: #07172d; }
 .bzHeroImg { object-fit: cover; }
 .bzHeroShade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5, 16, 32, 0.4) 0%, rgba(5, 16, 32, 0.2) 40%, rgba(5, 16, 32, 0.9) 100%), linear-gradient(90deg, rgba(5, 16, 32, 0.65) 0%, rgba(5, 16, 32, 0) 70%); }
 .bzHeroCopy { position: relative; padding: 120px 0 72px; }
