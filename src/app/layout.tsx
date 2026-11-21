@@ -25,6 +25,7 @@ import "./technology.css";
 import "./contact-page.css";
 import "./careers-page.css";
 import "./tech-catalog.css";
+import "./mobile.css";
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],

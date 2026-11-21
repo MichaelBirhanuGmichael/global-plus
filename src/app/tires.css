@@ -40,15 +40,20 @@
 .txEmpty { padding: 40px; text-align: center; border: 1px dashed #cfd9e6; border-radius: 16px; color: #55657b; }
 .txEmpty a { color: #07172d; font-weight: 600; }
 @media (max-width: 1020px) { .txGrid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .txGrid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .txGrid { grid-template-columns: 1fr 1fr; gap: 12px; } }
 
 @media (max-width: 700px) {
-  .txHero { min-height: max(520px, calc(100svh - var(--gpH))); }
-  .txHeroCopy { padding: 36px 0 104px; }
+  .txHero { min-height: 460px; }
+  .txHeroImg { object-position: 62% center; }
+  .txHeroShade { background: linear-gradient(180deg, rgba(4, 14, 30, 0.55) 0%, rgba(4, 14, 30, 0.35) 40%, rgba(4, 14, 30, 0.78) 100%); }
+  .txHeroCopy { padding: 32px 0 88px; }
+  .txHeroCopy h1 { font-size: clamp(34px, 10vw, 44px); }
+  .txSub { font-size: 16px; }
   .txCrumbs { margin-bottom: 24px; }
-  .txPanel { padding: 14px; border-radius: 20px; }
-  .txTabs { width: 100%; justify-content: space-between; }
-  .txTabs button { flex: 1; justify-content: center; padding: 10px 8px; font-size: 14px; }
+  .txPanelWrap { margin-top: -48px; }
+  .txPanel { flex-direction: column; align-items: stretch; gap: 12px; padding: 12px; border-radius: 20px; }
+  .txTabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; width: 100%; }
+  .txTabs button { justify-content: center; padding: 11px 2px; font-size: 13.5px; white-space: nowrap; }
   .txTabs button small { display: none; }
   .txSearch { width: 100%; }
   .txSearch input { width: 100%; }

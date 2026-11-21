@@ -1,0 +1,40 @@
+/* Phones: one place for the layout rules that keep text and buttons aligned and solid on small screens. Loaded last. */
+
+@media (max-width: 640px) {
+  /* Buttons: stacked, full width, same height, centred text */
+  .hmActions, .bzActions, .tqActions, .prHeroActions, .pdActions, .nwBandActions, .crEmptyActions, .pbActions { flex-direction: column; align-items: stretch; gap: 12px; }
+  .hmActions > a, .bzActions > a, .tqActions > a, .prHeroActions > a, .pdActions > a, .nwBandActions > a, .crEmptyActions > a, .pbActions > .pbBtn {
+    display: block; width: 100%; padding: 16px 22px; text-align: center; font-size: 16px;
+  }
+  .pbActions > .pbLink { align-self: flex-start; }
+  .ttCopy .hmBtn, .hmDealer .hmBtn, .tqCta .tqBtn, .crBand .crBtn, .hmCta .hmBtn { display: block; width: 100%; text-align: center; padding: 16px 22px; font-size: 16px; }
+
+  /* Small headings above titles: tighter so they stay on one line */
+  .hmEyebrow, .bzEyebrow, .tqEyebrow, .crEyebrow, .ctEyebrow, .pbEyebrow { font-size: 12px; letter-spacing: 0.1em; }
+
+  /* Hero: text sits at the bottom with even side margins */
+  .hmHeroCopy { padding: 72px 0 96px; }
+  .bzHeroCopy { padding: 72px 0 56px; }
+  .hmHeroCopy h1 { font-size: clamp(34px, 10vw, 44px); }
+  .hmHeroCopy p:not(.hmEyebrow) { font-size: 17px; line-height: 1.6; }
+  /* The photo caption sits clear of the chat button */
+  .hsCtl { left: 16px; right: 84px; bottom: 20px; }
+  .hsCaption { max-width: 100%; }
+
+  /* Partnership facts: a tidy 2-column grid instead of dividers that wrap */
+  .pbFacts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; margin-bottom: 26px; }
+  .pbFacts > div { margin: 0; padding: 0; border: 0; }
+  .pbFacts > div:last-child { grid-column: 1 / -1; }
+  .pbFacts dd { font-size: 20px; }
+
+  /* Dealer banner on the homepage: roads as a clean 1-column list */
+  .hmRoads { grid-template-columns: 1fr; }
+
+  /* Sections: even vertical rhythm */
+  .hmSection, .hmTint { padding-block: 56px; }
+}
+
+/* Chat button never covers content at the screen's edge */
+@media (max-width: 640px) {
+  .gpHeader { position: sticky; }
+}

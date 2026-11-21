@@ -62,5 +62,15 @@
 .tcFoot b { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; color: #07172d; background: #f1f4f9; transition: background 0.3s, color 0.3s, transform 0.3s; }
 .tc:hover .tcFoot b { background: #f2a516; color: #07172d; transform: translateX(3px); }
 
-@media (max-width: 560px) { .tcBody h3 { font-size: 24px; } }
+@media (max-width: 560px) {
+  .tc { border-radius: 18px; }
+  .tcTag { top: 10px; left: 10px; padding: 4px 9px 4px 8px; font-size: 11px; }
+  .tcStage img { padding: 8% 8% 10%; }
+  .tcBody { padding: 14px 14px 14px; }
+  .tcBody h3 { font-size: 17px; line-height: 1.15; letter-spacing: -0.02em; }
+  .tcSizes { margin: 6px 0 12px; font-size: 12.5px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .tcFoot { padding-top: 10px; }
+  .tcFoot span { font-size: 13px; }
+  .tcFoot b { width: 28px; height: 28px; }
+}
 @media (prefers-reduced-motion: reduce) { .tc, .tcStage img, .tcFoot b { transition: none; } .tc:hover, .tc:focus-visible { transform: none; } }

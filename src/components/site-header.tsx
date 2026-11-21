@@ -58,12 +58,14 @@ export default function SiteHeader() {
   const [raised, setRaised] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const [lastPath, setLastPath] = useState(pathname);
+  const [acc, setAcc] = useState<"biz" | "prod" | null>(null); // which group is open in the phone menu
 
   // close menus when the page changes (state adjusted during render, not in an effect)
   if (lastPath !== pathname) {
     setLastPath(pathname);
     setMenu(false);
     setFly(null);
+    setAcc(null);
   }
 
   useEffect(() => {
@@ -201,24 +203,59 @@ export default function SiteHeader() {
 
       <div className={`gpSheet ${menu ? "isOpen" : ""}`} aria-hidden={!menu}>
         <nav aria-label="Mobile">
-          <p>Businesses</p>
-          {businesses.map((b) => (
-            <Link key={b.href} href={b.href} className="gpSheetSub" tabIndex={menu ? 0 : -1}>
-              {b.label}
-            </Link>
-          ))}
-          <p>Products</p>
-          <Link href="/products" className="gpSheetSub" tabIndex={menu ? 0 : -1}>
-            All products
-          </Link>
-          {productGroups.map((g) => (
-            <Link key={g.href} href={g.href} className="gpSheetSub" tabIndex={menu ? 0 : -1}>
-              {g.title}
-            </Link>
-          ))}
-          <p>More</p>
+          <div className={`gpAcc ${acc === "biz" ? "isOpen" : ""}`}>
+            <button type="button" aria-expanded={acc === "biz"} onClick={() => setAcc((v) => (v === "biz" ? null : "biz"))} tabIndex={menu ? 0 : -1}>
+              Businesses <span className="gpCaret" aria-hidden="true" />
+            </button>
+            <div className="gpAccBody">
+              {businesses.map((b) => (
+                <Link key={b.href} href={b.href} tabIndex={menu && acc === "biz" ? 0 : -1}>
+                  {b.label}
+                </Link>
+              ))}
+              <Link href="/#businesses" className="gpAccAll" tabIndex={menu && acc === "biz" ? 0 : -1}>
+                See all businesses
+              </Link>
+            </div>
+          </div>
+
+          <div className={`gpAcc ${acc === "prod" ? "isOpen" : ""}`}>
+            <button type="button" aria-expanded={acc === "prod"} onClick={() => setAcc((v) => (v === "prod" ? null : "prod"))} tabIndex={menu ? 0 : -1}>
+              Products <span className="gpCaret" aria-hidden="true" />
+            </button>
+            <div className="gpAccBody">
+              {productGroups.map((g) => (
+                <div key={g.href} className="gpAccGroup">
+                  <Link href={g.href} className="gpAccTitle" tabIndex={menu && acc === "prod" ? 0 : -1}>
+                    {g.title}
+                  </Link>
+                  {g.items.map(([label, href]) => (
+                    <Link key={href} href={href} tabIndex={menu && acc === "prod" ? 0 : -1}>
+                      {label}
+                    </Link>
+                  ))}
+                  {g.sub ? (
+                    <>
+                      <Link href={g.sub.href} className="gpAccTitle" tabIndex={menu && acc === "prod" ? 0 : -1}>
+                        {g.sub.title}
+                      </Link>
+                      {g.sub.items.map(([label, href]) => (
+                        <Link key={href} href={href} tabIndex={menu && acc === "prod" ? 0 : -1}>
+                          {label}
+                        </Link>
+                      ))}
+                    </>
+                  ) : null}
+                </div>
+              ))}
+              <Link href="/products" className="gpAccAll" tabIndex={menu && acc === "prod" ? 0 : -1}>
+                View all products
+              </Link>
+            </div>
+          </div>
+
           {links.map((l) => (
-            <Link key={l.label} href={l.href} tabIndex={menu ? 0 : -1}>
+            <Link key={l.label} href={l.href} className="gpSheetLink" tabIndex={menu ? 0 : -1}>
               {l.label}
             </Link>
           ))}
